@@ -2,13 +2,16 @@ import Nav from './components/Nav';
 import DataTable from './components/DataTable'
 import Footer from './components/Footer'
 import image from './images/duotone.png'
-
+import { setGlobalState, useGlobalState} from './state/state'
 
 export default function App() {
-
+  const changeCurrency = (value)=>{
+      setGlobalState("defaultCurrency",value)
+  }
+  const [defaultCurrency] = useGlobalState("defaultCurrency")
   return (
-    <div className="font-sans leading-normal tracking-normal dark:bg-gray-800" >    
-      <Nav/>
+    <div className="bg-gray-800 font-sans leading-normal tracking-norma" >    
+      <Nav changeCurrency={changeCurrency} currency={defaultCurrency} />
       <main>
         <div className="hero text-accent-content lg:h-[50vh] h-screen ">
           <div className="h-full w-full bg-center bg-no-repeat bg-cover brightness-50" style={{ backgroundImage: `url(${image})` }} ></div>  
@@ -24,7 +27,7 @@ export default function App() {
             </div>
           </div> 
         </div>
-        <DataTable/>
+        <DataTable currency={defaultCurrency}/>
       </main>
       <Footer/>
     </div>
