@@ -40,12 +40,12 @@ export default function Nav( {changeCurrency, currency }) {
                                 <div tabIndex="0" className="btn gap-2 upper-case btn-ghost">
                                     <img src={"https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/USD.svg"}/>
                                     <span className={`text-lg  ${showNavBar && 'text-neutral dark:text-white'}`}>{currency}</span> 
-                                    <RiArrowDropDownLine size={27} className={showNavBar && 'text-neutral dark:text-white'}/>
+                                    <RiArrowDropDownLine size={27} className={showNavBar ? 'text-neutral dark:text-white' : ''}/>
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
                                     <ul className="menu menu-compact p-4 gap-y-1.5">
-                                        <li><button tabIndex="0" className={currency == 'usd' && 'active text-white'} onClick={()=>changeCurrency('usd')}>USD</button></li>
-                                        <li><button tabIndex="0" className={currency == 'mmk' && 'active text-white'} onClick={()=>changeCurrency('mmk')}>MMK</button></li>                            
+                                        <li><button tabIndex="0" className={currency == 'usd' ? 'active text-white' : ''} onClick={()=>changeCurrency('usd')}>USD</button></li>
+                                        <li><button tabIndex="0" className={currency == 'mmk' ? 'active text-white' : ''} onClick={()=>changeCurrency('mmk')}>MMK</button></li>                            
                                     </ul>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@ export default function Nav( {changeCurrency, currency }) {
                         <li className="ml-1 hidden sm:block">
                             <div className="tooltip tooltip-bottom tooltip-gray-400" data-tip="Toggle dark mode">
                                 <label tabIndex="0" className={`swap swap-rotate btn btn-ghost ${showNavBar && 'text-neutral dark:text-white'}`}  onChange={()=>toggleDarkMode()}>
-                                    <input type="checkbox" checked={darkMode ? '' : 'checked'}/>
+                                    <input type="checkbox" checked={darkMode ? '' : 'checked'} readOnly/>
                                     <BsMoon className='swap-on w-5 h-5 stroke-[0.5px]' />
                                     <BsSun className='swap-off w-5 h-5 stroke-[0.5px]' />
                                 </label>
@@ -81,20 +81,20 @@ export default function Nav( {changeCurrency, currency }) {
                                 </label>
                                 <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-base-100 text-base-content  rounded-box w-52">
                                     <li>
-                                        <select defaultValue={'usd'} className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content">
-                                        <option value="usd">USD</option>
-                                        <option value="mmk">MMK</option>
+                                        <select value={currency} className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content" onChange={(e)=>changeCurrency(e.target.value)}>
+                                            <option value="usd">USD</option>
+                                            <option value="mmk">MMK</option>
                                         </select>
                                     </li>
                                     <li>
-                                        <select defaultValue={'english'} className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content">
+                                        <select value={'english'} className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content" onChange={(e)=>hi()}>
                                             <option value="english">Lang: EN</option>
                                             <option value="myanmar">Lang: MM</option>
                                         </select>
                                     </li>
                                     <li>
                                         <label tabIndex="0" className="swap swap-rotate place-content-start py-3" onChange={()=>toggleDarkMode()} >
-                                            <input type="checkbox"  checked={darkMode ? '' : 'checked'}/>
+                                            <input type="checkbox"  checked={darkMode ? '' : 'checked'} readOnly/>
                                             <a className="swap-on inline-flex">
                                                 <span className="mr-1">Dark</span>
                                                 <BsMoon className='w-4 h-3 mt-1' />

@@ -2,7 +2,7 @@ import Nav from './components/Nav';
 import DataTable from './components/DataTable'
 import Footer from './components/Footer'
 import image from './images/duotone.png'
-import { setGlobalState, useGlobalState} from './state/state'
+import { setGlobalState, useGlobalState } from './state/state'
 
 export default function App() {
   const changeCurrency = (value)=>{
@@ -27,7 +27,7 @@ export default function App() {
             </div>
           </div> 
         </div>
-        <DataTable currency={defaultCurrency}/>
+          <DataTable currency={defaultCurrency}/>
       </main>
       <Footer/>
     </div>

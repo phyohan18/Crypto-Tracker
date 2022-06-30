@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
 
-export default function Pagination({ currentPage,paginate,pages }){
+export default function Pagination({ currentPage,paginate,pageNumbers }){
     
-    const pageNumbers=[];
-    for (let i = 1; i <= pages; i++){
-          pageNumbers.push(i);
-    }
-
     const [arrOfCurrButtons,setArrOfCurrButtons] = useState([])
     
     useEffect( () => {
@@ -14,35 +9,31 @@ export default function Pagination({ currentPage,paginate,pages }){
         if (currentPage >= 1 && currentPage <= 3) {
             tempNumberOfPages = [1,2,3,4,5,'...',pageNumbers.length]
         }
-        else if ( currentPage === 4 ) {
-            const sliced = pageNumbers.slice(0,5)
-            tempNumberOfPages = [...sliced,'...', pageNumbers.length]
-        }
-        else if ( currentPage > 4 && currentPage < pageNumbers.length - 2 ) {
-            const sliced1 = pageNumbers.slice(currentPage - 2, currentPage)         // from 5 to 8 -> (10 - 2)
-            const sliced2 = pageNumbers.slice(currentPage, currentPage + 2)         // sliced (5-2,5) -> [4,5]
-            tempNumberOfPages = ([1,'...',...sliced1,...sliced2,'...',pageNumbers.length])           // [1,'...',4,5,6,'...',10]
+        else if ( currentPage >= 4 && currentPage < pageNumbers.length - 2) {
+            const sliced1 = pageNumbers.slice(currentPage - 2, currentPage+1) 
+            tempNumberOfPages = [1,'...',...sliced1,'...',pageNumbers.length]
         }
         else if ( currentPage > pageNumbers.length - 3) {                           // > 7
-            const sliced = pageNumbers.slice(pageNumbers.length - 4)                // slice (10-4)
-            tempNumberOfPages = ([1,'...',...sliced])
+            const sliced = pageNumbers.slice(pageNumbers.length - 5)                // slice (10-4)
+            tempNumberOfPages = [1,'...',...sliced]
         }
         setArrOfCurrButtons(tempNumberOfPages)
     },[currentPage] )
 
     return(
-        <div className="tabs tabs-boxed bg-white shadow-md select-none">
+        <div className="tabs tabs-boxed bg-white dark:bg-gray-900 shadow-md select-none dark:text-accent-content">
             { arrOfCurrButtons.map( (page,index) => {
                 return (
-                    <button 
-                        className={`tab font-semibold rounded-md ml-1 mr-1 ${currentPage === page ? 'bg-teal-500 shadow-2xl text-accent-content' : 'btn-ghost' }`} 
-                        style={ { transition: "all 0.2s ease" }}
-                        onClick={ () => paginate(page) }
-                        key={index}
-                    >{page}</button> 
+                    page === '...' ?
+                        <button className="font-semibold rounded-md mx-1 mb-1">{page}</button>
+                        :<button 
+                            className={`tab font-semibold rounded-md mx-1 ${currentPage === page ? 'bg-teal-500 shadow-2xl text-accent-content border border-transparent' : 'btn-ghost' }`} 
+                            style={ { transition: "all 0.2s ease" }}
+                            onClick={ () => paginate(page) }
+                            key={index}
+                        >{page}</button> 
                 )
             } )}
-            {console.log("Paginate Rendered")}
         </div>
     )
 }
