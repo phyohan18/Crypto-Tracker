@@ -13,8 +13,8 @@ export default function Pagination({ currentPage,paginate,pageNumbers }){
             const sliced1 = pageNumbers.slice(currentPage - 2, currentPage+1) 
             tempNumberOfPages = [1,'...',...sliced1,'...',pageNumbers.length]
         }
-        else if ( currentPage > pageNumbers.length - 3) {                           // > 7
-            const sliced = pageNumbers.slice(pageNumbers.length - 5)                // slice (10-4)
+        else if ( currentPage > pageNumbers.length - 3) {                           
+            const sliced = pageNumbers.slice(pageNumbers.length - 5)                
             tempNumberOfPages = [1,'...',...sliced]
         }
         setArrOfCurrButtons(tempNumberOfPages)
@@ -25,7 +25,7 @@ export default function Pagination({ currentPage,paginate,pageNumbers }){
             { arrOfCurrButtons.map( (page,index) => {
                 return (
                     page === '...' ?
-                        <button className="font-semibold rounded-md mx-1 mb-1">{page}</button>
+                        <button className="font-semibold rounded-md mx-1 mb-1" key={index}>{page}</button>
                         :<button 
                             className={`tab font-semibold rounded-md mx-1 ${currentPage === page ? 'bg-teal-500 shadow-2xl text-accent-content border border-transparent' : 'btn-ghost' }`} 
                             style={ { transition: "all 0.2s ease" }}

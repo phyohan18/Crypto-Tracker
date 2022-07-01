@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import { BsSun,BsMoon } from 'react-icons/bs'
 import { FaBars } from 'react-icons/fa'
 import {RiArrowDropDownLine} from 'react-icons/ri'
+import i18next from 'i18next'
 
-export default function Nav( {changeCurrency, currency }) {
+export default function Nav( {changeCurrency, currency , changeLang, lang}) {
 
     const [showNavBar,setShowNavBar] = useState(false)
     const [darkMode,setDarkMode] = useState(true)
@@ -59,8 +60,8 @@ export default function Nav( {changeCurrency, currency }) {
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
                                     <ul className="menu menu-compact p-4 uppercase gap-y-1.5">
-                                        <li><a tabIndex="0"><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en_EN"/>English</a></li>                              
-                                        <li><a tabIndex="0"><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="my_MM"/>Myanmar</a></li>
+                                        <li><button tabIndex="0" className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</button></li>                              
+                                        <li><button tabIndex="0" className={i18next.language == 'mm' ? 'active text-white' : ''} onClick={()=>changeLang('mm')}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</button></li>
                                     </ul>
                                 </div>
                             </div>
@@ -87,9 +88,9 @@ export default function Nav( {changeCurrency, currency }) {
                                         </select>
                                     </li>
                                     <li>
-                                        <select value={'english'} className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content" onChange={(e)=>hi()}>
-                                            <option value="english">Lang: EN</option>
-                                            <option value="myanmar">Lang: MM</option>
+                                        <select value={i18next.language} className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content" onChange={(e)=>changeLang(e.target.value)}>
+                                            <option value="en">Lang: EN</option>
+                                            <option value="mm">Lang: MM</option>
                                         </select>
                                     </li>
                                     <li>

@@ -1,10 +1,12 @@
 import TableRow from './layout/TableRow'
 import SkeletonWrapper from './layout/SkeletonWrapper'
 import Pagination from './layout/Pagination'
-import { useEffect, useState , useRef} from 'react'
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function DataTable({ currency }){
-
+    
+    const { t } = useTranslation();
     const [showItems,setShowItems] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [itemsPerPage] = useState(10)
@@ -34,10 +36,6 @@ export default function DataTable({ currency }){
         pageNumbersArr.push(i);
     }
 
-    const renderCount = useRef(1)
-    useEffect(()=>{
-        renderCount.current = renderCount.current + 1
-    })
 
     //Search Coin 
     const handleSearch = (Items) => {
@@ -49,20 +47,19 @@ export default function DataTable({ currency }){
     return (
         <section className="py-1 duration-75  bg-gray-100 dark:bg-gray-800">
             <div className="container lg:w-12/14 xl:w-9/12 2xl:w-8/12 mb-8 xl:mb-0 px-4 mx-auto mt-8" >
-                <input type="text" placeholder="What are you looking for?" className="duration-75 input light:input-bordered  w-full dark:bg-[#2A3441]" onChange={(e)=> setSearchValue(e.target.value)}/>
+                <input type="text" placeholder={t('search')} className="duration-75 input light:input-bordered  w-full dark:bg-[#2A3441]" onChange={(e)=> setSearchValue(e.target.value)}/>
             </div>
-            <div>I renderd {renderCount.current}</div>
-            <div className="container lg:w-12/14 xl:w-10/12 2xl:w-8/12 mb-8 xl:mb-0 px-4 mx-auto mt-4 ">
+            <div id="content" className="container lg:w-12/14 xl:w-10/12 2xl:w-8/12 mb-8 xl:mb-0 px-4 mx-auto mt-4 ">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6  shadow-md rounded-lg">
                     <div className="overflow-x-auto rounded-lg">
                         <table className="table w-full ">
                             <tr className="bg-teal-500 text-accent-content select-none text-center">
                                 <th className="hidden sm:table-cell">#</th>
-                                <th className="text-left">Name</th>
-                                <th className="text-right">Price</th>
-                                <th className="text-right hidden md:table-cell">Change(24h)</th>
-                                <th className="sm:text-right">Market Cap</th>
-                                <th className="hidden lg:table-cell">Last 7 Days</th>
+                                <th className="text-left">{t('name')}</th>
+                                <th className="text-right">{t('price')}</th>
+                                <th className="text-right hidden md:table-cell">{t('change_24_hr')}</th>
+                                <th className="sm:text-right">{t('market_cap')}</th>
+                                <th className="hidden lg:table-cell">{t('last_7_days')}</th>
                             </tr>
                             
                             <tbody className="lg:text-lg font-normal text-gray-900 dark:text-accent-content">
