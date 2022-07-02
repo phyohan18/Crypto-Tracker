@@ -1,7 +1,7 @@
 import Nav from './components/Nav';
 import DataTable from './components/DataTable'
 import Footer from './components/Footer'
-import image from './images/duotone.png'
+import image from './images/duotone.webp'
 import { setGlobalState, useGlobalState } from './state/state'
 import i18n from "i18next"
 import { initReactI18next } from 'react-i18next'

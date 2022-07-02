@@ -13,7 +13,7 @@ export default function TableRow({coinInfo, currency}) {
             <td className="text-center hidden sm:table-cell dark:border-y-0">{coinInfo.market_cap_rank}</td>
             <td className="dark:border-y-0"> 
                 <div className="flex items-center">
-                    <img className="w-8 h-8 lg:w-9 lg:h-9 rounded-full" src={coinInfo.image} alt={coinInfo.name} />
+                    <img className="w-8 h-8 lg:w-9 lg:h-9 rounded-full" src={coinInfo.image.replace('large','small')} alt={coinInfo.name} />
                     <div className="md:flex">
                         <div className="pl-4  font-medium capitalize">{coinInfo.name}</div>
                         <div className="pl-4 uppercase">{coinInfo.symbol}</div>
