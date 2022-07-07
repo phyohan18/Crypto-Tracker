@@ -1,6 +1,6 @@
-import React,{ Suspense } from 'react';
-const Sparkline = React.lazy(() => import('./Sparkline'));
-export default function TableRow({coinInfo, currency}) {
+import React,{ Suspense , lazy } from 'react';
+const Sparkline = lazy(() => import('./Sparkline'));
+export function TableRow({coinInfo, currency}) {
 
     const formatCurrency = (x) =>  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
@@ -39,3 +39,5 @@ export default function TableRow({coinInfo, currency}) {
         </tr>
     )
 }
+
+export default React.memo(TableRow)

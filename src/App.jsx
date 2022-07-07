@@ -1,6 +1,6 @@
 import Nav from './components/Nav';
-import DataTable from './components/DataTable'
 import Footer from './components/Footer'
+import Section from './components/Section';
 import image from './images/duotone.webp'
 import { setGlobalState, useGlobalState } from './state/state'
 import i18n from "i18next"
@@ -32,7 +32,6 @@ export default function App() {
 
   const [defaultCurrency] = useGlobalState("defaultCurrency")
 
-
   return (
     <div className="bg-gray-800 font-sans leading-normal tracking-norma" >    
       <Nav changeCurrency={changeCurrency} currency={defaultCurrency} changeLang={changeLang} />
@@ -51,7 +50,7 @@ export default function App() {
             </div>
           </div> 
         </div>
-        <DataTable currency={defaultCurrency}/>     
+        <Section/>    
       </main>
       <Footer/>
     </div>
