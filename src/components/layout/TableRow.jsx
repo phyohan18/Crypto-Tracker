@@ -1,4 +1,5 @@
-import { Sparklines, SparklinesLine } from 'react-sparklines';
+import React,{ Suspense } from 'react';
+const Sparkline = React.lazy(() => import('./Sparkline'));
 export default function TableRow({coinInfo, currency}) {
 
     const formatCurrency = (x) =>  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -30,9 +31,9 @@ export default function TableRow({coinInfo, currency}) {
             <td className="text-right dark:border-y-0"><span className="uppercase">{currency}&nbsp;</span>&nbsp;{formatCurrency(coinInfo.market_cap)}</td>
             <td className="hidden lg:flex items-center justify-center dark:border-y-0">
                 <div style={divStyle}>
-                    <Sparklines data={coinInfo.sparkline_in_7d.price} limit={168} width={162} height={50} margin={3}>
-                        <SparklinesLine color="#14B8A6" />
-                    </Sparklines>
+                    <Suspense fallback={<div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}></div>}>
+                        <Sparkline data={coinInfo.sparkline_in_7d.price}/>
+                    </Suspense>
                 </div> 
             </td>
         </tr>

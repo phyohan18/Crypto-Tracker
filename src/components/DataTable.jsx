@@ -1,5 +1,5 @@
 import TableRow from './layout/TableRow'
-import SkeletonWrapper from './layout/SkeletonWrapper'
+import SkeletonLoader from './layout/SkeletonLoader'
 import Pagination from './layout/Pagination'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -75,7 +75,7 @@ export default function DataTable({ currency }){
                             </tr>
                             
                             <tbody className="lg:text-lg font-normal text-gray-900 dark:text-accent-content">
-                                { !showItems.length ? <SkeletonWrapper amount={itemsPerPage}/> : handleSearch(showItems).map( item => <TableRow key={item.id} coinInfo={item} currency={currency} /> ) }
+                                { !showItems.length ? <SkeletonLoader/> : handleSearch(showItems).map( item => <TableRow key={item.id} coinInfo={item} currency={currency} /> ) }
                             </tbody>   
                         </table> 
                     </div>
