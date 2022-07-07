@@ -31,11 +31,23 @@ export default function DataTable({ currency }){
     //Change Page
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
     const  pages = Math.ceil(showItems.length/itemsPerPage)
-    const pageNumbersArr = []
+    const pageNumbers = []
     for (let i = 1; i <= pages; i++){
-        pageNumbersArr.push(i);
+        pageNumbers.push(i);
     }
 
+    let tempNumberOfPages = [...pageNumbers]
+    if (currentPage >= 1 && currentPage <= 3) {
+        tempNumberOfPages = [1,2,3,4,5,'...',pageNumbers.length]
+    }
+    else if ( currentPage >= 4 && currentPage < pageNumbers.length - 2) {
+        const sliced1 = pageNumbers.slice(currentPage - 2, currentPage+1) 
+        tempNumberOfPages = [1,'...',...sliced1,'...',pageNumbers.length]
+    }
+    else if ( currentPage > pageNumbers.length - 3) {                           
+        const sliced = pageNumbers.slice(pageNumbers.length - 5)                
+        tempNumberOfPages = [1,'...',...sliced]
+    }
 
     //Search Coin 
     const handleSearch = (Items) => {
@@ -75,7 +87,7 @@ export default function DataTable({ currency }){
                 <Pagination 
                     currentPage = {currentPage} 
                     paginate = {paginate}
-                    pageNumbers = {pageNumbersArr}
+                    pageNumbers = {tempNumberOfPages}
                 />
             }
             </div>

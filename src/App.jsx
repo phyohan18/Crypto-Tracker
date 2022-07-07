@@ -19,7 +19,9 @@ i18n
     lang: "en",
     fallbackLng: "en",
   })
-
+  const changeLang = (value) =>{
+    i18n.changeLanguage(value)
+  }
 
 export default function App() {
 
@@ -30,9 +32,6 @@ export default function App() {
 
   const [defaultCurrency] = useGlobalState("defaultCurrency")
 
-  const changeLang = (value) =>{
-    i18n.changeLanguage(value)
-  }
 
   return (
     <div className="bg-gray-800 font-sans leading-normal tracking-norma" >    
