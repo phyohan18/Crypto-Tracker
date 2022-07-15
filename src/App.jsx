@@ -44,7 +44,7 @@ export default function App() {
                 <p className="py-6">
                   {t('slogan')}
                 </p>
-                <label for="my-modal-4" className="btn modal-button bg-teal-500 font-semibold text-base uppercase hover:bg-teal-600  transition duration-200 ease-in-out ">{t('get_started')}</label>
+                <label for="my-modal-4" className="btn modal-button bg-teal-500 font-semibold text-base uppercase hover:bg-teal-600 duration-200">{t('get_started')}</label>
             </div>
           </div> 
         </div>
@@ -54,7 +54,7 @@ export default function App() {
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
       <label for="my-modal-4" className="modal modal-bottom sm:modal-middle cursor-pointer duration-300 ">
         <label className="modal-box relative bg-gray-100 " for="">
-          <label for="my-modal-4" className="model-action absolute right-5 top-5 font-bold cursor-pointer">✕</label>
+          <label for="my-modal-4" className="model-action absolute right-5 top-5 font-bold cursor-pointer text-lg">✕</label>
           <h3 className="text-lg font-bold">Select your wallet </h3>
           {/* <div className="flex gap-4 bg-[#FDE3CB] rounded-xl mt-5 p-2 items-center cursor-pointer hover:bg-base-200  transition duration-200 ease-in-out">
             <div className="bg-white rounded-xl p-1.5 shadow-sm"> 
