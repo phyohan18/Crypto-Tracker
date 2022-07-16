@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@metamask/onboarding": "^1.0.1",
     "daisyui": "^2.14.3",
     "i18next": "^21.8.11",
     "react": "^18.0.0",
