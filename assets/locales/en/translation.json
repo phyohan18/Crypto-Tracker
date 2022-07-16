@@ -7,5 +7,8 @@
     "price" : "Price",
     "change_24_hr" : "Change(24h)",
     "market_cap" : "Market Cap",
-    "last_7_days" : "Last 7 Days"
+    "last_7_days" : "Last 7 Days",
+    "page_not_found":"Page not found",
+    "web_url":"Are you sure the website URL is correct?",
+    "back_to_home":"Back To Home"
 }

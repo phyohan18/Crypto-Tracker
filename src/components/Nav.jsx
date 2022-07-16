@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
+import { Link } from "react-router-dom"
 import { BsSun,BsMoon } from 'react-icons/bs'
 import { FaBars } from 'react-icons/fa'
 import {RiArrowDropDownLine} from 'react-icons/ri'
 import i18next from 'i18next'
 
-export default function Nav( {changeCurrency, currency , changeLang, lang}) {
+export default function Nav( {changeCurrency, currency , changeLang}) {
 
     const [showNavBar,setShowNavBar] = useState(false)
     const [darkMode,setDarkMode] = useState(true)
@@ -30,9 +31,9 @@ export default function Nav( {changeCurrency, currency , changeLang, lang}) {
         <nav className={`navbar fixed z-30 top-0 py-3 text-accent-content ease-in duration-75  ${showNavBar && 'bg-white shadow dark:bg-gray-900'}`}>
             <div className="container mx-auto px-6">
                 <div className="lg:pl-3">
-                    <a className={`no-underline font-extrabold text-xl ${showNavBar && 'text-neutral dark:text-white'}`} href="#">
+                    <Link className={`no-underline font-extrabold text-xl ${showNavBar && 'text-neutral dark:text-white'}`} to="/">
                         <span className="text-teal-500">Crypto </span> Tracker
-                    </a>
+                    </Link>
                 </div>
                 <div className="flex-grow flex items-center w-auto mt-2 lg:mt-0 z-20 ">
                     <ul className="list-reset flex justify-end flex-1 items-center">
