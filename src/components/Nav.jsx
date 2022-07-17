@@ -67,6 +67,7 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                     </ul>
                                 </div>
                             </div>
+                            <button tabIndex="0" className={i18next.language == 'mm' ? 'active text-white' : ''} onClick={()=>changeLang('mm')}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</button>
                         </li>
                         <li className="ml-1 hidden sm:block">
                             <div className="tooltip tooltip-bottom tooltip-gray-400" data-tip="Toggle dark mode">
