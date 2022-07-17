@@ -39,8 +39,9 @@ export default function NotFound() {
                         <li className="ml-1">
                             <div title="Change Language" className="dropdown dropdown-end">
                                 <div tabIndex="0" className="btn gap-2 capitalize btn-ghost">
-                                    <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"}/>
-                                    <span className={`text-base hidden md:block`}>EN</span> 
+                                {i18next.language == 'en' ? <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/> :
+                                    <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>}
+                                    <span className="uppercase text-base hidden md:block">{i18next.language}</span> 
                                     <RiArrowDropDownLine size={27} />
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
