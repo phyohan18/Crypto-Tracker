@@ -9,7 +9,7 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
 
     const [showNavBar,setShowNavBar] = useState(false)
     const [darkMode,setDarkMode] = useState(true)
-    const controlNavbar = ()=> window.scrollY > 100 ? setShowNavBar(true) : setShowNavBar(false)
+    const controlNavbar = ()=> window.scrollY > 50 ? setShowNavBar(true) : setShowNavBar(false)
 
     useEffect(()=>{
         window.addEventListener('scroll',controlNavbar)
