@@ -78,8 +78,8 @@ export default function NotFound() {
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
                                     <ul className="menu menu-compact p-4 gap-y-1.5">
-                                        <li><button tabIndex="0" className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}>EN</button></li>
-                                        <li><button tabIndex="0" className={i18next.language == 'mm' ? 'active text-white' : ''}onClick={()=>changeLang('mm')}>MM</button></li>                            
+                                        <li><button  className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}>EN</button></li>
+                                        <li><button  className={i18next.language == 'mm' ? 'active text-white' : ''}onClick={()=>changeLang('mm')}>MM</button></li>                            
                                     </ul>
                                 </div>
                             </div>
