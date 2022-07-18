@@ -58,12 +58,12 @@ export default function NotFound() {
                                 <div className="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px mt-16 w-56 overflow-y-auto shadow-2xl">
                                     <ul class="menu menu-compact gap-1 p-3" tabindex="0">
                                         <li>
-                                            <button class="flex" onClick={()=>alert('hi')}> 
+                                            <button class="flex" onClick={()=>changeLang('en')}> 
                                                 <span class="flex flex-1 justify-between">English </span>
                                             </button> 
                                         </li>
                                         <li>
-                                            <button class="flex" onClick={()=>alert('hi')}> 
+                                            <button class="flex" onClick={()=>changeLang('mm')}> 
                                                 <span class="flex flex-1 justify-between">English </span>
                                             </button> 
                                         </li>

@@ -46,8 +46,8 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
                                     <ul className="menu menu-compact p-4 gap-y-1.5">
-                                        <li><button tabIndex="0" className={currency == 'usd' ? 'active text-white' : ''} onClick={()=>changeCurrency('usd')}>USD</button></li>
-                                        <li><button tabIndex="0" className={currency == 'mmk' ? 'active text-white' : ''} onClick={()=>changeCurrency('mmk')}>MMK</button></li>                            
+                                        <li onClick={()=>changeCurrency('usd')}><a tabIndex="0" className={currency == 'usd' ? 'active text-white' : ''}>USD</a></li>
+                                        <li onClick={()=>changeCurrency('mmk')}><a tabIndex="0" className={currency == 'mmk' ? 'active text-white' : ''}>MMK</a></li>                            
                                     </ul>
                                 </div>
                             </div>
