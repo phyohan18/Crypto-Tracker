@@ -39,46 +39,31 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                     <ul className="list-reset flex justify-end flex-1 items-center">
                         <li className="ml-1 hidden sm:block">
                             <div title="Change Currency" className="dropdown dropdown-end">
-                                <div tabIndex="0" className="btn gap-2 upper-case btn-ghost">
+                                <div tabIndex="0" className="btn gap-2 btn-ghost">
                                     <img src={"https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/USD.svg"}/>
-                                    <span className={`text-lg  ${showNavBar && 'text-neutral dark:text-white'}`}>{currency}</span> 
+                                    <span className={`text-lg upper-case   ${showNavBar && 'text-neutral dark:text-white'}`}>{currency}</span> 
                                     <RiArrowDropDownLine size={27} className={showNavBar ? 'text-neutral dark:text-white' : ''}/>
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-4 gap-y-1.5">
-                                        <li onClick={()=>changeCurrency('usd')}><a tabIndex="0" className={currency == 'usd' ? 'active text-white' : ''}>USD</a></li>
-                                        <li onClick={()=>changeCurrency('mmk')}><a tabIndex="0" className={currency == 'mmk' ? 'active text-white' : ''}>MMK</a></li>                            
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="ml-1 hidden sm:block">
-                            <div title="Change Currency" className="dropdown dropdown-end">
-                                <div tabIndex="0" className="btn gap-2 upper-case btn-ghost">
-                                    <img src={"https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/USD.svg"}/>
-                                    <span className={`text-lg  ${showNavBar && 'text-neutral dark:text-white'}`}>{currency}</span> 
-                                    <RiArrowDropDownLine size={27} className={showNavBar ? 'text-neutral dark:text-white' : ''}/>
-                                </div> 
-                                <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-4 gap-y-1.5">
-                                        <li><button tabIndex="0" className={currency == 'usd' ? 'active text-white' : ''} onClick={()=>changeCurrency('usd')}>USD</button></li>
-                                        <li><button tabIndex="0" className={currency == 'mmk' ? 'active text-white' : ''} onClick={()=>changeCurrency('mmk')}>MMK</button></li>                            
+                                    <ul className="menu menu-compact p-3 gap-y-1.5" tabindex="0">
+                                        <li onClick={()=>changeCurrency('usd')}><button className={currency == 'usd' ? 'active text-white' : ''}>USD</button></li>
+                                        <li onClick={()=>changeCurrency('mmk')}><button className={currency == 'mmk' ? 'active text-white' : ''}>MMK</button></li>                            
                                     </ul>
                                 </div>
                             </div>
                         </li>
                         <li className="ml-1 hidden sm:block">
                             <div title="Change Language" className="dropdown dropdown-end">
-                                <div tabIndex="0" className="btn gap-2 capitalize btn-ghost">
+                                <div tabIndex="0" className="btn gap-2 btn-ghost">
                                     {i18next.language == 'en' ? <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/> :
                                     <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>}
                                     <span className={`text-base hidden uppercase md:block ${showNavBar && 'text-neutral dark:text-white'}`}>{i18next.language}</span> 
                                     <RiArrowDropDownLine size={27} className={showNavBar && 'text-neutral dark:text-white'}/>
                                 </div> 
-                                <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-4 uppercase gap-y-1.5">
-                                        <li onClick={()=>changeLang('en')}><a tabIndex="0" className={i18next.language == 'en' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</a></li>                              
-                                        <li onClick={()=>changeLang('mm')}><a tabIndex="0" className={i18next.language == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</a></li>
+                                <div className="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
+                                    <ul className="menu menu-compact p-3  gap-y-1.5" tabindex="0">
+                                        <li onClick={()=>changeLang('en')}><button className={i18next.language == 'en' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</button></li>                              
+                                        <li onClick={()=>changeLang('mm')}><button className={i18next.language == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</button></li>
                                     </ul>
                                 </div>
                             </div>
