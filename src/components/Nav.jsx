@@ -62,23 +62,7 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
                                     <ul className="menu menu-compact p-4 uppercase gap-y-1.5">
-                                        <li><button tabIndex="0" className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</button></li>                              
-                                        <li onClick={()=>changeLang('mm')}><button tabIndex="0" className={i18next.language == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</button></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                        <li className="ml-1">
-                            <div title="Change Language" className="dropdown dropdown-end">
-                                <div tabIndex="0" className="btn gap-2 capitalize btn-ghost">
-                                {i18next.language == 'en' ? <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/> :
-                                    <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>}
-                                    <span className="uppercase text-base hidden md:block">{i18next.language}</span> 
-                                    <RiArrowDropDownLine size={27} />
-                                </div> 
-                                <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-4 gap-y-1.5">
-                                        <li onClick={()=>changeLang('en')}><a tabIndex="0" className={i18next.language == 'en' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</a></li>
+                                        <li onClick={()=>changeLang('en')}><a tabIndex="0" className={i18next.language == 'en' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</a></li>                              
                                         <li onClick={()=>changeLang('mm')}><a tabIndex="0" className={i18next.language == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</a></li>
                                     </ul>
                                 </div>
