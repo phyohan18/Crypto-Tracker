@@ -98,7 +98,7 @@ export default function NotFound() {
                             </div>
                         </li>
                         <li className="ml-1">
-                            <div title="Change Currency" className="dropdown dropdown-end">
+                            <div title="Change Language" className="dropdown dropdown-end">
                                 <div tabIndex="0" className="btn gap-2 upper-case btn-ghost">
                                 {i18next.language == 'en' ? <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/> :
                                     <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>}
@@ -114,7 +114,7 @@ export default function NotFound() {
                                         </li>
                                         <li>
                                             <button class="flex" className={i18next.language == 'mm' ? 'active text-white' : ''} onClick={()=>changeLang('mm')}> 
-                                                <span class="flex flex-1 justify-between">MM </span>
+                                                <span class="flex flex-1 justify-between">English</span>
                                             </button>
                                         </li>                            
                                     </ul>
