@@ -36,27 +36,6 @@ export default function NotFound() {
                 </div>
                 <div className="flex-grow flex items-center w-auto mt-2 lg:mt-0 z-20 ">
                     <ul className="list-reset flex justify-end flex-1 items-center">
-                    <li className="ml-1">
-                            <div title="Change Currency" className="dropdown dropdown-end">
-                                <div tabIndex="0" className="btn gap-2 upper-case btn-ghost">
-                                Lang
-                                </div> 
-                                <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-4 gap-y-1.5" tabindex="0">
-                                        <li>
-                                            <button class="flex" className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}> 
-                                                <span class="flex flex-1 justify-between">English </span>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="flex" className={i18next.language == 'mm' ? 'active text-white' : ''} onClick={()=>changeLang('mm')}> 
-                                                <span class="flex flex-1 justify-between">MM </span>
-                                            </button>
-                                        </li>                            
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
                         <li className="ml-1">
                             <div title="Change Language" className="dropdown dropdown-end">
                                 <div tabIndex="0" className="btn gap-2 btn-ghost">
@@ -66,7 +45,7 @@ export default function NotFound() {
                                     <RiArrowDropDownLine size={27} />
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-4 gap-y-1.5">
+                                    <ul className="menu menu-compact p-4 gap-y-1.5" tabindex="0">
                                         <li onClick={()=>changeLang('en')}><a tabIndex="0" className={i18next.language == 'en' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</a></li>
                                         <li onClick={()=>changeLang('mm')}><a tabIndex="0" className={i18next.language == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</a></li>
                                     </ul>
@@ -106,7 +85,7 @@ export default function NotFound() {
                                     <RiArrowDropDownLine size={27} />
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-4 gap-y-1.5">
+                                    <ul className="menu menu-compact p-4 gap-y-1.5" tabindex="0">
                                         <li>
                                             <button class="flex" className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}> 
                                                 <span class="flex flex-1 justify-between">English </span>
