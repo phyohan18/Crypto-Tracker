@@ -74,14 +74,12 @@ export default function NotFound() {
                         <li className="ml-1">
                             <div title="Change Currency" className="dropdown dropdown-end">
                                 <div tabIndex="0" className="btn gap-2 upper-case btn-ghost">
-                                    <img src={"https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/USD.svg"}/>
-                                    <span className={`text-lg  ${showNavBar && 'text-neutral dark:text-white'}`}>{currency}</span> 
-                                    <RiArrowDropDownLine size={27} className={showNavBar ? 'text-neutral dark:text-white' : ''}/>
+                                Lang
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
                                     <ul className="menu menu-compact p-4 gap-y-1.5">
-                                        <li><button tabIndex="0" className={currency == 'usd' ? 'active text-white' : ''} onClick={()=>changeCurrency('usd')}>USD</button></li>
-                                        <li><button tabIndex="0" className={currency == 'mmk' ? 'active text-white' : ''} onClick={()=>changeCurrency('mmk')}>MMK</button></li>                            
+                                        <li><button tabIndex="0" className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}>EN</button></li>
+                                        <li><button tabIndex="0" className={i18next.language == 'mm' ? 'active text-white' : ''}onClick={()=>changeLang('mm')}>MM</button></li>                            
                                     </ul>
                                 </div>
                             </div>
