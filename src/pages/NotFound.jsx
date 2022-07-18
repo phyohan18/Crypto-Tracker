@@ -45,7 +45,7 @@ export default function NotFound() {
                                     <RiArrowDropDownLine size={27} />
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-4 gap-y-1.5" tabindex="0">
+                                    <ul className="menu menu-compact p-4 gap-y-1.5">
                                         <li onClick={()=>changeLang('en')}><a tabIndex="0" className={i18next.language == 'en' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</a></li>
                                         <li onClick={()=>changeLang('mm')}><a tabIndex="0" className={i18next.language == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</a></li>
                                     </ul>
@@ -61,7 +61,7 @@ export default function NotFound() {
                                     <RiArrowDropDownLine size={27} />
                                 </div>
                                 <div className="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px mt-16 w-56 overflow-y-auto shadow-2xl">
-                                    <ul className="menu menu-compact gap-1 p-3" tabindex="0">
+                                    <ul className="menu menu-compact gap-1 p-3">
                                         <li>
                                             <button class="flex" className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}> 
                                                 <span class="flex flex-1 justify-between">English </span>
