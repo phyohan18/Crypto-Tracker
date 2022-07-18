@@ -106,17 +106,17 @@ export default function NotFound() {
                                     <RiArrowDropDownLine size={27} />
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-4 gap-y-1.5">
+                                    <ul className="menu menu-compact gap-1 p-3" tabindex="0">
                                         <li>
                                             <button class="flex" className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}> 
                                                 <span class="flex flex-1 justify-between">English </span>
-                                            </button>
+                                            </button> 
                                         </li>
                                         <li>
                                             <button class="flex" className={i18next.language == 'mm' ? 'active text-white' : ''} onClick={()=>changeLang('mm')}> 
-                                                <span class="flex flex-1 justify-between">English</span>
-                                            </button>
-                                        </li>                            
+                                                <span class="flex flex-1 justify-between">English </span>
+                                            </button> 
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
