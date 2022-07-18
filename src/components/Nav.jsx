@@ -69,22 +69,6 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                             </div>
                         </li>
                         <li className="ml-1 hidden sm:block">
-                            <ul class="menu menu-horizontal rounded-box p-2">
-                                <li tabindex="0">
-                                    <span>
-                                        {i18next.language == 'en' ? <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/> :
-                                        <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>}
-                                        <span className={`text-base hidden uppercase md:block ${showNavBar && 'text-neutral dark:text-white'}`}>{i18next.language}</span> 
-                                        <RiArrowDropDownLine size={27} className={showNavBar && 'text-neutral dark:text-white'}/>
-                                    </span>
-                                    <ul class="rounded-box bg-base-100 text-base-content p-2 ">
-                                        <li><a>Submenu 1</a></li>
-                                        <li onClick={()=>changeLang('mm')}><a tabIndex="0" className={i18next.language == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li className="ml-1 hidden sm:block">
                             <div className="tooltip tooltip-bottom tooltip-gray-400" data-tip="Toggle dark mode">
                                 <label tabIndex="0" className={`swap swap-rotate btn btn-ghost ${showNavBar && 'text-neutral dark:text-white'}`}  onChange={()=>toggleDarkMode()}>
                                     <input type="checkbox" checked={darkMode ? '' : 'checked'} readOnly/>
