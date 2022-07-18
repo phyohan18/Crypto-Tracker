@@ -36,6 +36,27 @@ export default function NotFound() {
                 </div>
                 <div className="flex-grow flex items-center w-auto mt-2 lg:mt-0 z-20 ">
                     <ul className="list-reset flex justify-end flex-1 items-center">
+                    <li className="ml-1">
+                            <div title="Change Currency" className="dropdown dropdown-end">
+                                <div tabIndex="0" className="btn gap-2 upper-case btn-ghost">
+                                Lang
+                                </div> 
+                                <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
+                                    <ul className="menu menu-compact p-4 gap-y-1.5">
+                                        <li>
+                                            <button class="flex" className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}> 
+                                                <span class="flex flex-1 justify-between">English </span>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="flex" className={i18next.language == 'mm' ? 'active text-white' : ''} onClick={()=>changeLang('mm')}> 
+                                                <span class="flex flex-1 justify-between">MM </span>
+                                            </button>
+                                        </li>                            
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                         <li className="ml-1">
                             <div title="Change Language" className="dropdown dropdown-end">
                                 <div tabIndex="0" className="btn gap-2 btn-ghost">
@@ -56,7 +77,7 @@ export default function NotFound() {
                             <div title="Change Language" className="dropdown dropdown-end">
                                 <div tabIndex="0" className="btn gap-1 normal-case btn-ghost">Lang</div>
                                 <div className="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px mt-16 w-56 overflow-y-auto shadow-2xl">
-                                    <ul class="menu menu-compact gap-1 p-3" tabindex="0">
+                                    <ul className="menu menu-compact gap-1 p-3" tabindex="0">
                                         <li>
                                             <button class="flex" className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}> 
                                                 <span class="flex flex-1 justify-between">English </span>
