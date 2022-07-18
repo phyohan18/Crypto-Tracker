@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import { BsSun,BsMoon } from 'react-icons/bs'
+import { BiWallet } from "react-icons/bi"
 import { FaBars } from 'react-icons/fa'
 import {RiArrowDropDownLine} from 'react-icons/ri'
 import i18next from 'i18next'
@@ -60,12 +61,21 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                     <span className={`text-base hidden uppercase md:block ${showNavBar && 'text-neutral dark:text-white'}`}>{i18next.language}</span> 
                                     <RiArrowDropDownLine size={27} className={showNavBar && 'text-neutral dark:text-white'}/>
                                 </div> 
-                                <div className="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
+                                <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
                                     <ul className="menu menu-compact p-3  gap-y-1.5" tabindex="0">
                                         <li onClick={()=>changeLang('en')}><button className={i18next.language == 'en' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</button></li>                              
                                         <li onClick={()=>changeLang('mm')}><button className={i18next.language == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</button></li>
                                     </ul>
                                 </div>
+                            </div>
+                        </li>
+                        <li className="ml-1 hidden sm:block">
+                            <div className="tooltip tooltip-bottom tooltip-gray-400" data-tip="Connect wallet">
+                                <label htmlFor="my-modal-4">
+                                    <div tabIndex="0" className={`btn capitalize gap-2 btn-ghost ${showNavBar && 'text-neutral dark:text-white'}`}>
+                                        <BiWallet className='swap-on w-5 h-5 stroke-[0.5px]' />
+                                    </div> 
+                                </label>
                             </div>
                         </li>
                         <li className="ml-1 hidden sm:block">
@@ -82,7 +92,7 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                 <label tabIndex="0" className={`btn btn-ghost lg:hidden ${showNavBar && 'text-neutral dark:text-white'}`}>
                                     <FaBars size={20}/>
                                 </label>
-                                <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-base-100 text-base-content  rounded-box w-52">
+                                <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-base-100 text-base-content  rounded-box w-52" tabIndex="0">
                                     <li>
                                         <select value={currency} className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content" onChange={(e)=>changeCurrency(e.target.value)}>
                                             <option value="usd">USD</option>
@@ -96,14 +106,19 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                         </select>
                                     </li>
                                     <li>
+                                        <label htmlFor="my-modal-4" className='py-3.5 mb-2.5 font-semibold'>
+                                                Connect Wallet
+                                        </label>
+                                    </li>
+                                    <li>
                                         <label tabIndex="0" className="swap swap-rotate place-content-start py-3" onChange={()=>toggleDarkMode()} >
                                             <input type="checkbox"  checked={darkMode ? '' : 'checked'} readOnly/>
                                             <a className="swap-on inline-flex">
-                                                <span className="mr-1">Dark</span>
+                                                <span className="mr-1 font-semibold">Dark</span>
                                                 <BsMoon className='w-4 h-3 mt-1' />
                                             </a>                           
                                             <a className="swap-off inline-flex">
-                                                <span className="mr-1">Light</span>
+                                                <span className="mr-1 font-semibold">Light</span>
                                                 <BsSun className='w-4 h-4 mt-0.5' />
                                             </a>
                                         </label>
