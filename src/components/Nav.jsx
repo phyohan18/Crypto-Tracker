@@ -5,11 +5,12 @@ import { BiWallet } from "react-icons/bi"
 import { FaBars } from 'react-icons/fa'
 import {RiArrowDropDownLine} from 'react-icons/ri'
 import i18next from 'i18next'
+import { setGlobalState, useGlobalState } from '../state/state'
 
 export default function Nav( {changeCurrency, currency , changeLang}) {
 
     const [showNavBar,setShowNavBar] = useState(false)
-    const [darkMode,setDarkMode] = useState(true)
+    const [darkMode] = useGlobalState("darkMode")
     const controlNavbar = ()=> window.scrollY > 25 ? setShowNavBar(true) : setShowNavBar(false)
 
     useEffect(()=>{
@@ -18,21 +19,21 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
     },[])
 
     const toggleDarkMode = () =>{
-        setDarkMode(!darkMode)
-        if (darkMode) {
-            document.documentElement.setAttribute('data-theme','dark')
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.setAttribute('data-theme','emerald')
-            document.documentElement.classList.remove('dark')
-        }
+        setGlobalState("darkMode",!darkMode)
     }
-
+    if (darkMode) {
+        document.documentElement.setAttribute('data-theme','dark')
+        document.documentElement.classList.add('dark')
+    } else {
+        document.documentElement.setAttribute('data-theme','emerald')
+        document.documentElement.classList.remove('dark')
+    }
+    
     return (
         <nav className={`navbar fixed z-30 top-0 py-3 text-accent-content ease-in duration-75  ${showNavBar && 'bg-white shadow dark:bg-gray-900'}`}>
             <div className="container mx-auto px-6">
                 <div className="lg:pl-3">
-                    <Link className={`no-underline font-extrabold text-xl ${showNavBar && 'text-neutral dark:text-white'}`} to="/">
+                    <Link className={`font-extrabold text-xl ${showNavBar && 'text-neutral dark:text-white'}`} to="/">
                         <span className="text-teal-500">Crypto </span> Tracker
                     </Link>
                 </div>
@@ -81,7 +82,7 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                         <li className="ml-1 hidden sm:block">
                             <div className="tooltip tooltip-bottom tooltip-gray-400" data-tip="Toggle dark mode">
                                 <label tabIndex="0" className={`swap swap-rotate btn btn-ghost ${showNavBar && 'text-neutral dark:text-white'}`}  onChange={()=>toggleDarkMode()}>
-                                    <input type="checkbox" checked={darkMode ? '' : 'checked'} readOnly/>
+                                    <input type="checkbox" checked={darkMode ? 'checked' : ''} readOnly/>
                                     <BsMoon className='swap-on w-5 h-5 stroke-[0.5px]' />
                                     <BsSun className='swap-off w-5 h-5 stroke-[0.5px]' />
                                 </label>
