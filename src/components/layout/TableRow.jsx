@@ -1,14 +1,7 @@
 import React,{ Suspense , lazy } from 'react';
+import {formatCurrency} from '../../hooks/globalFun'
 const Sparkline = lazy(() => import('./Sparkline'));
 export function TableRow({coinInfo, currency}) {
-
-    const formatCurrency = (x) =>  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-
-    const divStyle ={
-        width:"162px",
-        height: "48px"
-    };
-
     return (
         <tr>
             <td className="text-center hidden sm:table-cell dark:border-y-0">{coinInfo.market_cap_rank}</td>
@@ -30,8 +23,8 @@ export function TableRow({coinInfo, currency}) {
             <td className="text-right hidden md:table-cell dark:border-y-0"><div className={`font-semibold ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-600'}`}>{coinInfo.price_change_percentage_24h}%</div></td>
             <td className="text-right dark:border-y-0"><span className="uppercase">{currency}&nbsp;</span>&nbsp;{formatCurrency(coinInfo.market_cap)}</td>
             <td className="hidden lg:flex items-center justify-center dark:border-y-0">
-                <div style={divStyle}>
-                    <Suspense fallback={<div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}></div>}>
+                <div className="w-40 h-12">
+                    <Suspense fallback={<div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12"></div>}>
                         <Sparkline data={coinInfo.sparkline_in_7d.price}/>
                     </Suspense>
                 </div> 

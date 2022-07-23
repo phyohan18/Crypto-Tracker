@@ -5,7 +5,7 @@ import { BiWallet } from "react-icons/bi"
 import { FaBars } from 'react-icons/fa'
 import {RiArrowDropDownLine} from 'react-icons/ri'
 import i18next from 'i18next'
-import { setGlobalState, useGlobalState } from '../state/state'
+import { setGlobalState, useGlobalState } from '../hooks/state'
 
 export default function Nav( {changeCurrency, currency , changeLang}) {
 
@@ -47,7 +47,7 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                     <RiArrowDropDownLine size={27} className={showNavBar ? 'text-neutral dark:text-white' : ''}/>
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-3 gap-y-1.5" tabindex="0">
+                                    <ul className="menu menu-compact p-3 gap-y-1.5" tabIndex="0">
                                         <li onClick={()=>changeCurrency('usd')}><button className={currency == 'usd' ? 'active text-white' : ''}>USD</button></li>
                                         <li onClick={()=>changeCurrency('mmk')}><button className={currency == 'mmk' ? 'active text-white' : ''}>MMK</button></li>                            
                                     </ul>
@@ -63,7 +63,7 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                     <RiArrowDropDownLine size={27} className={showNavBar && 'text-neutral dark:text-white'}/>
                                 </div> 
                                 <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
-                                    <ul className="menu menu-compact p-3  gap-y-1.5" tabindex="0">
+                                    <ul className="menu menu-compact p-3  gap-y-1.5" tabIndex="0">
                                         <li onClick={()=>changeLang('en')}><button className={i18next.language == 'en' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</button></li>                              
                                         <li onClick={()=>changeLang('mm')}><button className={i18next.language == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</button></li>
                                     </ul>

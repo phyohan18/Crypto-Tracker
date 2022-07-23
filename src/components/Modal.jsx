@@ -1,43 +1,25 @@
 import MetaMaskOnboarding from '@metamask/onboarding'
 import React,{useState } from 'react'
-import { Link } from 'react-router-dom';
-import { setGlobalState, useGlobalState } from '../state/state'
-
-const detectProvider = () => {
-    let provider;
-    if (window.ethereum){
-      provider = window.ethereum;
-    } else if (window.web3){
-      provider = window.web3.currentProvider;
-    } else {
-      return false
-    }
-    return provider
-}
-
-const formatAddress = (accountAddress) => {
-    return accountAddress.slice(0,6)+'...'+accountAddress.slice(-6)
-}
+import { Link } from 'react-router-dom'
+import { formatAddress, detectProvider } from '../hooks/globalFun'
+import useLocalStorage from '../hooks/useLocalStorage'
 
 export default function Modal(){
 
     const [ provider ] = useState(detectProvider())
-    
-    const [accountAddress] = useGlobalState("accountAddress")
-    const [loading, setLoading ] = useState(false)
+    const [ accountAddress , setAccountAddress] = useLocalStorage("account_address", "")
+    const [ loading, setLoading ] = useState(false)
 
     const fetchAddress = async () => {
         setLoading(true)
         try {
             const accounts = await provider.request({ method: "eth_requestAccounts" }) 
-            setGlobalState("accountAddress",accounts[0])
+            setAccountAddress(accounts[0])
             provider.on("accountsChanged" ,fetchAddress)
             setLoading(false)
         } catch (error) {
             setLoading(false)
         }
-
-        
     }
 
     const onLoginHandler = () => {
@@ -56,9 +38,9 @@ export default function Modal(){
     return (
         <>
             <input type="checkbox" id="my-modal-4" className="modal-toggle" />
-            <label for="my-modal-4" className="modal modal-bottom sm:modal-middle cursor-pointer duration-300 ">
+            <label htmlFor="my-modal-4" className="modal modal-bottom sm:modal-middle cursor-pointer duration-300 ">
                 <label className="modal-box relative bg-gray-100 dark:bg-gray-900">
-                    <label for="my-modal-4" className="absolute right-5 top-5 font-bold cursor-pointer text-lg">✕</label>
+                    <label htmlFor="my-modal-4" className="absolute right-5 top-5 font-bold cursor-pointer text-lg">✕</label>
                     <h3 className="text-lg font-bold">{provider ? 'Select your wallet' : 'No Ethereum Browser Detected!'} </h3>
                     { accountAddress ?
                         <div className="flex flex-row mt-5 p-2">
@@ -83,9 +65,9 @@ export default function Modal(){
                         :
                         <button className={`flex ${!loading && "gap-4 hover:bg-base-200 dark:hover:bg-gray-800 transition duration-200 ease-in-out cursor-pointer"} rounded-xl mt-5 p-2 items-center w-full `} onClick={onLoginHandler} disabled={loading}>
                             {loading ?
-                                <svg class="motion-reduce:hidden animate-spin -ml-1 mr-3 h-5 w-5 text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                <svg className="motion-reduce:hidden animate-spin -ml-1 mr-3 h-5 w-5 text-teal-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
                             :
                                 <div className="bg-white rounded-xl p-1.5 shadow-sm"> 
@@ -96,12 +78,7 @@ export default function Modal(){
                                 { loading ? "Connecting to MetaMask..." : provider ? "Connect with Metamask" : "Click Here to Install Metamask"}
                             </p>
                         </button>
-                    }
-                    { accountAddress && 
-                        <div className="flex justify-end">
-                            
-                        </div>
-                    }                 
+                    }               
                 </label>
             </label>
         </>

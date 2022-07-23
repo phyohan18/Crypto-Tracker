@@ -1,9 +1,3 @@
-
-const divStyle ={
-    width:"162px",
-    height: "48px"
-};
-
 export default function SkeletonLoader(){
     return (
         <>
@@ -25,7 +19,7 @@ export default function SkeletonLoader(){
                 <div className="w-4/5 h-7 bg-slate-200 dark:bg-slate-600 rounded ml-auto"></div>
             </td>
             <td className="hidden lg:table-cell dark:border-y-0">
-                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}>
+                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12">
                 </div>
             </td>
         </tr>
@@ -47,7 +41,7 @@ export default function SkeletonLoader(){
                 <div className="w-4/5 h-7 bg-slate-200 dark:bg-slate-600 rounded ml-auto"></div>
             </td>
             <td className="hidden lg:table-cell dark:border-y-0">
-                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}>
+                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12">
                 </div>
             </td>
         </tr>
@@ -69,7 +63,7 @@ export default function SkeletonLoader(){
                 <div className="w-4/5 h-7 bg-slate-200 dark:bg-slate-600 rounded ml-auto"></div>
             </td>
             <td className="hidden lg:table-cell dark:border-y-0">
-                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}>
+                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12">
                 </div>
             </td>
         </tr>
@@ -91,7 +85,7 @@ export default function SkeletonLoader(){
                 <div className="w-4/5 h-7 bg-slate-200 dark:bg-slate-600 rounded ml-auto"></div>
             </td>
             <td className="hidden lg:table-cell dark:border-y-0">
-                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}>
+                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12">
                 </div>
             </td>
         </tr>
@@ -113,7 +107,7 @@ export default function SkeletonLoader(){
                 <div className="w-4/5 h-7 bg-slate-200 dark:bg-slate-600 rounded ml-auto"></div>
             </td>
             <td className="hidden lg:table-cell dark:border-y-0">
-                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}>
+                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12">
                 </div>
             </td>
         </tr>
@@ -135,7 +129,7 @@ export default function SkeletonLoader(){
                 <div className="w-4/5 h-7 bg-slate-200 dark:bg-slate-600 rounded ml-auto"></div>
             </td>
             <td className="hidden lg:table-cell dark:border-y-0">
-                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}>
+                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12">
                 </div>
             </td>
         </tr>
@@ -157,7 +151,7 @@ export default function SkeletonLoader(){
                 <div className="w-4/5 h-7 bg-slate-200 dark:bg-slate-600 rounded ml-auto"></div>
             </td>
             <td className="hidden lg:table-cell dark:border-y-0">
-                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}>
+                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12">
                 </div>
             </td>
         </tr>
@@ -179,7 +173,7 @@ export default function SkeletonLoader(){
                 <div className="w-4/5 h-7 bg-slate-200 dark:bg-slate-600 rounded ml-auto"></div>
             </td>
             <td className="hidden lg:table-cell dark:border-y-0">
-                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}>
+                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12">
                 </div>
             </td>
         </tr>
@@ -201,7 +195,7 @@ export default function SkeletonLoader(){
                 <div className="w-4/5 h-7 bg-slate-200 dark:bg-slate-600 rounded ml-auto"></div>
             </td>
             <td className="hidden lg:table-cell dark:border-y-0">
-                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}>
+                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12">
                 </div>
             </td>
         </tr>
@@ -223,7 +217,7 @@ export default function SkeletonLoader(){
                 <div className="w-4/5 h-7 bg-slate-200 dark:bg-slate-600 rounded ml-auto"></div>
             </td>
             <td className="hidden lg:table-cell dark:border-y-0">
-                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto" style={divStyle}>
+                <div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12">
                 </div>
             </td>
         </tr>

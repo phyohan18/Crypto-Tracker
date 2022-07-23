@@ -3,7 +3,7 @@ import Footer from '../components/Footer'
 import Section from '../components/Section'
 import Modal from '../components/Modal'
 import image from '../images/duotone.webp'
-import { setGlobalState, useGlobalState } from '../state/state'
+import { setGlobalState, useGlobalState } from '../hooks/state'
 import i18n from "i18next"
 import { initReactI18next } from 'react-i18next'
 import { useTranslation } from 'react-i18next'
@@ -45,7 +45,7 @@ export default function App() {
                 <p className="py-6">
                   {t('slogan')}
                 </p>
-                <label for="my-modal-4" className="btn modal-button bg-teal-500 font-semibold text-accent-content uppercase hover:bg-teal-600 duration-200">{t('get_started')}</label>
+                <label htmlFor="my-modal-4" className="btn modal-button bg-teal-500 font-semibold text-accent-content uppercase hover:bg-teal-600 duration-200">{t('get_started')}</label>
             </div>
           </div> 
         </div>

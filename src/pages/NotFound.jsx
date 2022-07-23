@@ -45,7 +45,7 @@ export default function NotFound() {
                                     <RiArrowDropDownLine size={27} />
                                 </div>
                                 <div className="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px mt-16 w-52 overflow-y-auto shadow-2xl">
-                                    <ul className="menu menu-compact gap-y-1.5 p-3" tabindex="0">
+                                    <ul className="menu menu-compact gap-y-1.5 p-3" tabIndex="0">
                                         <li>
                                             <button className={i18next.language == 'en' ? 'active text-white' : ''} onClick={()=>changeLang('en')}> 
                                                 <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English
