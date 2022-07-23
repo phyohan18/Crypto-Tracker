@@ -7,10 +7,10 @@ import { useGlobalState } from '../hooks/state'
 
 export default function DataTable({ searchValue}){
     
-    const { t } = useTranslation();
+    const { t } = useTranslation()
     const [showItems,setShowItems] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
-    const [searchItems, setSearchItems] = useState([]);
+    const [searchItems, setSearchItems] = useState([])
     const [defaultCurrency] = useGlobalState("defaultCurrency")
 
     useEffect(()=>{
@@ -20,7 +20,7 @@ export default function DataTable({ searchValue}){
            const data = await res.json()
            setShowItems(data)
        }  
-       getData();
+       getData()
     },[defaultCurrency])
 
     useEffect(()=>{   
@@ -50,7 +50,7 @@ export default function DataTable({ searchValue}){
     
     const pageNumbers = []
     for (let i = 1; i <= pages; i++){
-        pageNumbers.push(i);
+        pageNumbers.push(i)
     }
 
     if (currentPage >= 1 && currentPage <= 3) {
