@@ -23,7 +23,7 @@ i18n
 
 export default function NotFound() {
 
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
     return (
         <>

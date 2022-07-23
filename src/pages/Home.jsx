@@ -26,7 +26,7 @@ i18n
 
 export default function App() {
 
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const changeCurrency = (value)=>{
       setGlobalState("defaultCurrency",value)
   }

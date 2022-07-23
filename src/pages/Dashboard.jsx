@@ -1,13 +1,12 @@
-import { Link } from "react-router-dom";
-import { AiFillCaretUp } from "react-icons/ai";
+import { Link } from "react-router-dom"
+import { AiFillCaretUp } from "react-icons/ai"
 import useLocalStorage from '../hooks/useLocalStorage'
-import { formatAddress , disconnect } from '../hooks/globalFun';
-import NotFound from "./NotFound";
-
+import { formatAddress , disconnect } from '../hooks/globalFun'
+import NotFound from "./NotFound"
 
 export default function Dashboard() {
 
-    const [ accountAddress ] = useLocalStorage('account_address', '')
+    const [ accountAddress, setAccountAddress ] = useLocalStorage('account_address', '')
 
     if (accountAddress == null)
         return <NotFound/>

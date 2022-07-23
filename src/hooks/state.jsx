@@ -1,8 +1,8 @@
-import { createGlobalState } from "react-hooks-global-state";
+import { createGlobalState } from "react-hooks-global-state"
 
 const { setGlobalState, useGlobalState } = createGlobalState({
     defaultCurrency: 'usd',
     darkMode: false
 });
 
-export { useGlobalState, setGlobalState };
+export { useGlobalState, setGlobalState }

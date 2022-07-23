@@ -1,6 +1,6 @@
-import React,{ Suspense , lazy } from 'react';
+import React,{ Suspense , lazy } from 'react'
 import {formatCurrency} from '../../hooks/globalFun'
-const Sparkline = lazy(() => import('./Sparkline'));
+const Sparkline = lazy(() => import('./Sparkline'))
 export function TableRow({coinInfo, currency}) {
     return (
         <tr>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Sparklines, SparklinesLine } from 'react-sparklines';
+import React from 'react'
+import { Sparklines, SparklinesLine } from 'react-sparklines'
 
 export function Sparkline(props){
     return (

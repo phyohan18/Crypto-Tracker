@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 
 export default function Section(){
 
-    const { t } = useTranslation();
-    const [searchValue, setSearchValue] = useState('');
+    const { t } = useTranslation()
+    const [searchValue, setSearchValue] = useState('')
 
     const handleSearch = (value) => {
         setSearchValue(value)
