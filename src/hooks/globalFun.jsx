@@ -1,4 +1,4 @@
-const formatAddress = (accountAddress) => accountAddress.slice(0,6)+'...'+accountAddress.slice(-6)
+const formatAddress = (accountAddress) => accountAddress.slice(0,5)+'...'+accountAddress.slice(-5)
 
 const formatCurrency = (x) =>  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 
@@ -14,14 +14,13 @@ const detectProvider = () => {
     return provider
 }
 
-const getWalletAddress = async () => {
+const getWalletAddress = async (provider) => {
   const accounts = await provider.request({ method: "eth_requestAccounts" }) 
   return accounts[0]
 }
 
 const disconnect = () =>{
   let provider = detectProvider()
-  provider.removeAllListeners('chainChanged')
   provider.removeAllListeners('accountsChanged')
   window.localStorage.removeItem('account_address')
 }

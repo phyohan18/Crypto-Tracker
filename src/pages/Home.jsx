@@ -3,7 +3,7 @@ import Footer from '../components/Footer'
 import Section from '../components/Section'
 import Modal from '../components/Modal'
 import image from '../images/duotone.webp'
-import { setGlobalState, useGlobalState } from '../hooks/state'
+import { setGlobalState, useGlobalState } from '../hooks/globalState'
 import i18n from "i18next"
 import { initReactI18next } from 'react-i18next'
 import { useTranslation } from 'react-i18next'

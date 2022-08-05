@@ -5,29 +5,19 @@ import { BiWallet } from "react-icons/bi"
 import { FaBars } from 'react-icons/fa'
 import {RiArrowDropDownLine} from 'react-icons/ri'
 import i18next from 'i18next'
-import { setGlobalState, useGlobalState } from '../hooks/state'
+import useDarkMode from '../hooks/useDarkMode'
 
 export default function Nav( {changeCurrency, currency , changeLang}) {
 
     const [showNavBar,setShowNavBar] = useState(false)
-    const [darkMode] = useGlobalState("darkMode")
+    const [darkMode,toggleDarkMode] = useDarkMode()
+
     const controlNavbar = ()=> window.scrollY > 25 ? setShowNavBar(true) : setShowNavBar(false)
 
     useEffect(()=>{
         window.addEventListener('scroll',controlNavbar)
         return ()=> window.removeEventListener('scroll',controlNavbar)
     },[])
-
-    const toggleDarkMode = () =>{
-        setGlobalState("darkMode",!darkMode)
-    }
-    if (darkMode) {
-        document.documentElement.setAttribute('data-theme','dark')
-        document.documentElement.classList.add('dark')
-    } else {
-        document.documentElement.setAttribute('data-theme','emerald')
-        document.documentElement.classList.remove('dark')
-    }
     
     return (
         <nav className={`navbar fixed z-30 top-0 py-3 text-accent-content ease-in duration-75  ${showNavBar && 'bg-white shadow dark:bg-gray-900'}`}>
@@ -46,7 +36,7 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                     <span className={`text-lg upper-case   ${showNavBar && 'text-neutral dark:text-white'}`}>{currency}</span> 
                                     <RiArrowDropDownLine size={27} className={showNavBar ? 'text-neutral dark:text-white' : ''}/>
                                 </div> 
-                                <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
+                                <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-lg mt-16">
                                     <ul className="menu menu-compact p-3 gap-y-1.5" tabIndex="0">
                                         <li onClick={()=>changeCurrency('usd')}><button className={currency == 'usd' ? 'active text-white' : ''}>USD</button></li>
                                         <li onClick={()=>changeCurrency('mmk')}><button className={currency == 'mmk' ? 'active text-white' : ''}>MMK</button></li>                            
@@ -62,7 +52,7 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                     <span className={`text-base hidden uppercase md:block ${showNavBar && 'text-neutral dark:text-white'}`}>{i18next.language}</span> 
                                     <RiArrowDropDownLine size={27} className={showNavBar && 'text-neutral dark:text-white'}/>
                                 </div> 
-                                <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-2xl mt-16">
+                                <div className="dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-lg mt-16">
                                     <ul className="menu menu-compact p-3  gap-y-1.5" tabIndex="0">
                                         <li onClick={()=>changeLang('en')}><button className={i18next.language == 'en' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</button></li>                              
                                         <li onClick={()=>changeLang('mm')}><button className={i18next.language == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</button></li>
@@ -93,7 +83,7 @@ export default function Nav( {changeCurrency, currency , changeLang}) {
                                 <label tabIndex="0" className={`btn btn-ghost lg:hidden ${showNavBar && 'text-neutral dark:text-white'}`}>
                                     <FaBars size={20}/>
                                 </label>
-                                <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-base-100 text-base-content  rounded-box w-52" tabIndex="0">
+                                <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow-lg  bg-base-100 text-base-content  rounded-box w-52" tabIndex="0">
                                     <li>
                                         <select value={currency} className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content" onChange={(e)=>changeCurrency(e.target.value)}>
                                             <option value="usd">USD</option>

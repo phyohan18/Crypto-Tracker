@@ -3,7 +3,7 @@ import SkeletonLoader from './layout/SkeletonLoader'
 import Pagination from './layout/Pagination'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useGlobalState } from '../hooks/state'
+import { useGlobalState } from '../hooks/globalState'
 
 export default function DataTable({ searchValue}){
     

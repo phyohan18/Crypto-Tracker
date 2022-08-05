@@ -1,7 +1,7 @@
 import MetaMaskOnboarding from '@metamask/onboarding'
-import React,{useState } from 'react'
+import {useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { formatAddress, detectProvider } from '../hooks/globalFun'
+import { formatAddress, detectProvider, getWalletAddress} from '../hooks/globalFun'
 import useLocalStorage from '../hooks/useLocalStorage'
 
 export default function Modal(){
@@ -9,22 +9,28 @@ export default function Modal(){
     const [ provider ] = useState(detectProvider())
     const [ accountAddress , setAccountAddress] = useLocalStorage("account_address", "")
     const [ loading, setLoading ] = useState(false)
-
+ 
     const fetchAddress = async () => {
-        setLoading(true)
-        try {
-            const accounts = await provider.request({ method: "eth_requestAccounts" }) 
-            setAccountAddress(accounts[0])
-            provider.on("accountsChanged" ,fetchAddress)
-            setLoading(false)
-        } catch (error) {
-            setLoading(false)
-        }
+        const wallet_address = await getWalletAddress(provider)
+        setAccountAddress(wallet_address)    
     }
 
-    const onLoginHandler = () => {
+    useEffect(()=>{
+        if(accountAddress){
+            provider.on("accountsChanged" ,fetchAddress)
+        }
+        return () => provider.removeAllListeners('accountsChanged')
+    },[accountAddress])
+
+    const onLoginHandler = async() => {
         if (provider) {
-            fetchAddress()
+            setLoading(true)
+            try {
+                await fetchAddress()
+                setLoading(false)
+            } catch (error) {
+                setLoading(false)
+            } 
             //   fetchBalances(accountAddress);
             //   provider.on("chainChanged" ,fetchBalances)
             
