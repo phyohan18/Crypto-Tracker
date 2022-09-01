@@ -1,12 +1,13 @@
-import { formatAddress ,disconnect} from '../hooks/globalFun'
 import { BsSun,BsMoon } from 'react-icons/bs'
 import {RiArrowDropDownLine} from 'react-icons/ri'
 import { Link } from "react-router-dom"
-import useDarkMode from '../hooks/useDarkMode'
+import { formatAddress ,disconnect, changeLang} from '../hooks/globalFun'
+import {useDarkMode,useChangeCurrency} from '../hooks/useCustomHooks'
 
-export default function DashboardNav({accountAddress}){
+export default function DashboardNav({accountAddress,currentLanguage}){
     
     const [darkMode,toggleDarkMode] = useDarkMode()
+    const [defaultCurrency,changeCurrency] = useChangeCurrency()
 
     return (
         <header className="z-30 navbar fixed bg-base-100 shadow duration-100">
@@ -20,26 +21,27 @@ export default function DashboardNav({accountAddress}){
                     <div title="Change Currency" className="dropdown dropdown-end hidden sm:block mt-0.5">
                         <label tabIndex="0" className="btn gap-2 btn-ghost dark:text-white">
                             <img className="w-6 h-6" src={"https://s2.coinmarketcap.com/static/cloud/img/fiat-flags/USD.svg"} alt="usd"/>
-                            <span className='text-lg upper-case hidden md:block'>usd</span> 
+                            <span className='text-lg upper-case hidden md:block'>{defaultCurrency}</span> 
                             <RiArrowDropDownLine size={27} />       
                         </label>
                         <div className="dropdown-content bg-base-100 rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-lg mt-16">
                             <ul className="menu menu-compact p-3 gap-y-1.5" tabIndex="0">
-                                <li><button className='active text-white'>USD</button></li>
-                                <li ><button>MMK</button></li>                            
+                                <li onClick={()=>changeCurrency('usd')}><button className={defaultCurrency == 'usd' ? 'active text-white' : ''}>USD</button></li>
+                                <li onClick={()=>changeCurrency('mmk')}><button className={defaultCurrency == 'mmk' ? 'active text-white' : ''} >MMK</button></li>                            
                             </ul>
                         </div>
                     </div>
                     <div title="Change Language" className="dropdown dropdown-end hidden sm:block mt-0.5">
                         <label tabIndex="0" className="btn gap-2 btn-ghost dark:text-white">
-                            <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>
-                            <span className={`text-lg hidden uppercase md:block`}>mm</span> 
+                            {currentLanguage == 'en' ? <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/> :
+                            <img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>}
+                            <span className={`text-lg hidden uppercase md:block`}>{currentLanguage}</span> 
                             <RiArrowDropDownLine size={27}/>
                         </label> 
                         <div className="dropdown-content bg-base-100 rounded-t-box rounded-b-box top-px h-auto w-52 overflow-y-auto shadow-lg mt-16">
                             <ul className="menu menu-compact p-3  gap-y-1.5" tabIndex="0">
-                                <li><button className='active text-white'><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</button></li>                              
-                                <li ><button><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</button></li>
+                                <li onClick={()=>changeLang('en')}><button className={currentLanguage == 'en' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/gb.svg"} alt="en"/>English</button></li>                              
+                                <li onClick={()=>changeLang('mm')}><button className={currentLanguage == 'mm' ? 'active text-white' : ''}><img className="w-6 h-6 rounded-lg" src={"https://flagicons.lipis.dev/flags/4x3/mm.svg"} alt="mm"/>Myanmar</button></li>
                             </ul>
                         </div>
                     </div>
@@ -74,13 +76,13 @@ export default function DashboardNav({accountAddress}){
                         </label>
                         <ul tabIndex="0" className="mt-3 p-2 shadow-lg menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                             <li>
-                                <select value="USD" className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content" >
+                                <select value={defaultCurrency} className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content" onChange={(e)=>changeCurrency(e.target.value)}>
                                     <option value="usd">USD</option>
                                     <option value="mmk">MMK</option>
                                 </select>
                             </li>
                             <li>
-                                <select value="EN" className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content">
+                                <select value={currentLanguage} className="select w-full max-w-xs mb-2.5  bg-base-100 text-base-content" onChange={(e)=>changeLang(e.target.value)}>
                                     <option value="en">Lang: EN</option>
                                     <option value="mm">Lang: MM</option>
                                 </select>

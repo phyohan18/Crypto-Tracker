@@ -2,12 +2,10 @@ import TableRow from './layout/TableRow'
 import SkeletonLoader from './layout/SkeletonLoader'
 import Pagination from './layout/Pagination'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useGlobalState } from '../hooks/globalState'
 
-export default function DataTable({ searchValue}){
+export default function DataTable({ searchValue, translation }){
     
-    const { t } = useTranslation()
     const [showItems,setShowItems] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
     const [searchItems, setSearchItems] = useState([])
@@ -76,11 +74,11 @@ export default function DataTable({ searchValue}){
                         <table className="table w-full ">
                             <tr className="bg-teal-500 text-accent-content select-none text-center">
                                 <th className="hidden sm:table-cell">#</th>
-                                <th className="text-left">{t('name')}</th>
-                                <th className="text-right">{t('price')}</th>
-                                <th className="text-right hidden md:table-cell">{t('change_24_hr')}</th>
-                                <th className="sm:text-right">{t('market_cap')}</th>
-                                <th className="hidden lg:table-cell">{t('last_7_days')}</th>
+                                <th className="text-left">{translation('name')}</th>
+                                <th className="text-right">{translation('price')}</th>
+                                <th className="text-right hidden md:table-cell">{translation('change_24_hr')}</th>
+                                <th className="sm:text-right">{translation('market_cap')}</th>
+                                <th className="hidden lg:table-cell">{translation('last_7_days')}</th>
                             </tr>
                             
                             <tbody className="lg:text-lg font-normal text-gray-900 dark:text-accent-content">
@@ -91,7 +89,7 @@ export default function DataTable({ searchValue}){
                 </div>
             </div>
 
-            <div className="flex flex-col items-center mb-8 px-4 mx-auto mt-8">
+            <div className="flex flex-col items-center mb-8 px-4 mx-auto mt-8 dark:mt-10">
             { items.length > 0 &&  
                 <Pagination 
                     currentPage = {currentPage} 

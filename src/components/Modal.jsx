@@ -31,8 +31,6 @@ export default function Modal(){
             } catch (error) {
                 setLoading(false)
             } 
-            //   fetchBalances(accountAddress);
-            //   provider.on("chainChanged" ,fetchBalances)
             
         }else{
             //We create a new MetaMask onboarding object to use in our app

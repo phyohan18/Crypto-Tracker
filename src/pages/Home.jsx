@@ -3,45 +3,21 @@ import Footer from '../components/Footer'
 import Section from '../components/Section'
 import Modal from '../components/Modal'
 import image from '../images/duotone.webp'
-import { setGlobalState, useGlobalState } from '../hooks/globalState'
-import i18n from "i18next"
-import { initReactI18next } from 'react-i18next'
-import { useTranslation } from 'react-i18next'
-import transitionsEn from '../../assets/locales/en/translation.json'
-import transitionsMm from '../../assets/locales/mm/translation.json'
-
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en : { translation: transitionsEn},
-      mm : { translation: transitionsMm},
-    },
-    lang: "en",
-    fallbackLng: "en",
-  })
-  const changeLang = (value) =>{
-    i18n.changeLanguage(value)
-  }
+import { useChangeLanguage } from '../hooks/useCustomHooks'
 
 export default function App() {
 
-  const { t } = useTranslation()
-  const changeCurrency = (value)=>{
-      setGlobalState("defaultCurrency",value)
-  }
-
-  const [defaultCurrency] = useGlobalState("defaultCurrency")
+  const [currentLanguage, t ] = useChangeLanguage()
 
   return (
-    <div className="bg-gray-800 font-sans leading-normal tracking-norma" >    
-      <Nav changeCurrency={changeCurrency} currency={defaultCurrency} changeLang={changeLang} />
+    <div className="bg-gray-800 font-sans leading-normal tracking-normal" >    
+      <Nav currentLanguage={currentLanguage}/>
       <main>
         <div className="hero text-accent-content lg:h-[50vh] h-screen ">
           <div className="h-full w-full bg-center bg-no-repeat bg-cover brightness-50" style={{ backgroundImage: `url(${image})` }} ></div>  
             <div className="text-center hero-content">
               <div className="max-w-md">
-                <h1 className={`${i18n.language == "en" ? "text-5xl font-bold" : "text-4xl font-semibold"}`}>{t('keep_up_to_date')}</h1>
+                <h1 className={`${currentLanguage == "en" ? "text-5xl font-bold" : "text-4xl font-semibold"}`}>{t('keep_up_to_date')}</h1>
                 <p className="py-6">
                   {t('slogan')}
                 </p>
@@ -49,7 +25,7 @@ export default function App() {
             </div>
           </div> 
         </div>
-        <Section/>    
+        <Section translation={t}/>    
       </main>
       <Footer/>
       <Modal/>     
