@@ -8,7 +8,7 @@ import i18n from "i18next"
 import { initReactI18next } from 'react-i18next'
 import transitionsEn from '../assets/locales/en/translation.json'
 import transitionsMm from '../assets/locales/mm/translation.json'
-import { MoralisProvider } from 'react-moralis'
+//import { MoralisProvider } from 'react-moralis'
 
 i18n
   .use(initReactI18next)
@@ -22,7 +22,7 @@ i18n
 })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <MoralisProvider serverUrl="https://je8vnjjon3kq.usemoralis.com:2053/server" appId="7g97I4mY4pc8LTvVrVGuC9kMZL4UW1jKPGUGpmpU">
+    //<MoralisProvider serverUrl="https://isjms8b7stax.usemoralis.com:2053/server" appId="DOC7SB9jWirXFYGQOntC0rYQDgchc4Y2gEDTwkLJ">
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>}/>
@@ -30,5 +30,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path="*" element={<NotFound/>}/>
             </Routes>
         </BrowserRouter>
-    </MoralisProvider>
+    //</MoralisProvider>
 )

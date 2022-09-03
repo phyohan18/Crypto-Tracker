@@ -8,7 +8,6 @@ import useLocalStorage from '../hooks/useLocalStorage'
 import {detectProvider, getWalletAddress , getWalletStats} from '../hooks/globalFun'
 import { useChangeLanguage } from "../hooks/useCustomHooks"
 import ci from "../../assets/constants/chains.json"
-import { html } from "daisyui/dist/base"
 
 export default function Dashboard() {
 
