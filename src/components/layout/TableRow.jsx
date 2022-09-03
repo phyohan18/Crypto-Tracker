@@ -17,7 +17,7 @@ export function TableRow({coinInfo, currency}) {
             <td className="text-right dark:border-y-0">
                 <div className="md:flex">
                     <div className="w-full font-medium md:font-normal"><span className="uppercase">{currency}&nbsp;</span>{formatCurrency(coinInfo.current_price)}</div>
-                    <div className={`block font-semibold md:font-light md:hidden ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-600'}`}>{coinInfo.price_change_percentage_24h}%</div>
+                    <div className={`block font-semibold md:font-light md:hidden ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-500'}`}>{coinInfo.price_change_percentage_24h}%</div>
                 </div>
             </td>
             <td className="text-right hidden md:table-cell dark:border-y-0"><div className={`font-semibold ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-600'}`}>{coinInfo.price_change_percentage_24h}%</div></td>

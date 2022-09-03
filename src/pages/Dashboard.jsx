@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
-import { AiFillCaretUp } from "react-icons/ai"
+import { AiFillCaretUp,AiFillCaretDown } from "react-icons/ai"
 import NotFound from "./NotFound"
 import DashboardNav from "../components/DashboardNav"
 import DashboardTable from "../components/DashboardTable"
 import { useEffect,useState } from "react"
 import useLocalStorage from '../hooks/useLocalStorage'
-import {detectProvider, getWalletAddress , getWalletStats} from '../hooks/globalFun'
+import {detectProvider, getWalletAddress , getWalletStats, formatCurrency} from '../hooks/globalFun'
 import { useChangeLanguage } from "../hooks/useCustomHooks"
 import ci from "../../assets/constants/chains.json"
 
@@ -19,9 +19,11 @@ export default function Dashboard() {
     const [ currentLanguage , t] = useChangeLanguage()
     const [ chainInfo , setChainInfo ] = useState({
         title:null,
+        symbol:null,
         currency:null,
         network:null,
-        nativeBlance: null
+        nativeBalance: null,
+        priceChangePercentage: "0.00"
     })
 
     const fetchAddress = async () => {
@@ -30,7 +32,7 @@ export default function Dashboard() {
     }
 
     const fetchBalances = async () => {
-        const [chainInfo, nativeBlance] = await getWalletStats(provider,accountAddress)
+        const [chainInfo, nativeBalance] = await getWalletStats(provider,accountAddress)
         console.log(chainInfo)
         const API = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&sparkline=false&price_change_percentage=24h`
         const res = await  fetch(API)
@@ -46,16 +48,29 @@ export default function Dashboard() {
         //         }
         //     })
         // }
-        for (let x of i){
-            console.log(x)
-        }
-        const result = data.filter(item => 'eth' == item.symbol)
-        console.log(result)
+
+        
+        // console.log(data.map(item => {
+        //    if(i.includes(item.symbol)){
+        //     return null
+        //    }else {
+        //     return item.symbol
+        //    }
+        // }))
+
+        // for (let x of i){
+        //       console.log(data.filter(item => item.symbol === x))   
+        // }
+
+        const coinInfo = data.filter(item => chainInfo[0].nativeCurrency.symbol.toLowerCase() == item.symbol)
+        console.log(coinInfo)
         setChainInfo({
             title:chainInfo[0].name,
-            currency: chainInfo[0].nativeCurrency.symbol,
+            symbol:chainInfo[0].nativeCurrency.symbol,
+            currency: coinInfo.length > 0 ? '$' : chainInfo[0].nativeCurrency.symbol,
             network: chainInfo[0].network,
-            nativeBlance : nativeBlance
+            nativeBalance : coinInfo.length > 0 ? formatCurrency((nativeBalance*coinInfo[0].current_price).toFixed(2)) : nativeBalance,
+            priceChangePercentage: coinInfo[0].price_change_24h.toFixed(2) 
         })
     }
 
@@ -107,21 +122,23 @@ export default function Dashboard() {
                                 </h2>
                                 <div className="flex flex-row items-center gap-2 mt-1">
                                     <span className="text-base">{chainInfo.title ?? 'Unknown'}</span>
-                                    <div className="badge badge-outline">{chainInfo.currency ?? '-'}</div> 
+                                    <div className="badge badge-outline">{chainInfo.symbol ?? '-'}</div> 
                                     {chainInfo.network ? <div className="badge badge-outline capitalize">{chainInfo.network}</div> : ''}
                                 </div>
                             </div>
                         </div>
                         <div className="card w-full sm:w-auto bg-base-100 shadow-md">
                             <div className="card-body">
-                                <h2 className="card-title font-medium mb-0.4">
-                                    Total Balance <div className="tooltip tooltip-top tooltip-gray-400" data-tip="Native Balance"><div className="mt-1 btn btn-ghost text-info btn-xs btn-circle"><svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline h-5 w-5 stroke-slate-700"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div></div>
+                                <h2 className="card-title font-medium sm:text-sm md:text-lg mb-0.4">
+                                    Total Balance <div className="tooltip tooltip-top tooltip-gray-400" data-tip="Native Balance"><div className="mt-1 btn btn-ghost text-info btn-xs btn-circle"><svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline h-5 w-6 stroke-gray-500 dark:stroke-gray-400"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div></div>
                                 </h2>
-                                <div className="flex flex-row items-center gap-2 text-xl">
-                                    <span className="text-[#139287]">{chainInfo.nativeBlance ?? '0.00'} {chainInfo.currency ?? '$'}</span>
-                                    <AiFillCaretUp className="ml-1 mt-0.5 text-[#139287]"/>
-                                    <span className="text-[#139287]">0.00%</span>
-                                    <div className="badge badge-outline">24H</div> 
+                                <div className="flex md:flex-row sm:flex-col items-center gap-2  sm:text-md md:text-xl">
+                                    <span className="text-[#139287]">{chainInfo.nativeBalance ?? '0.00'} {chainInfo.currency ?? '$'}</span>
+                                    <div className="flex flex-row items-center gap-1">
+                                        {chainInfo.priceChangePercentage[0] == '-' ? <AiFillCaretDown className="mt-0.5 text-red-500"/>:<AiFillCaretUp className="mt-0.5 text-[#139287]"/>}
+                                        <span className={ chainInfo.priceChangePercentage[0] == '-'? 'text-red-500' : 'text-[#139287]' }>{chainInfo.priceChangePercentage.replace(/\s|-/g,'')} %</span>
+                                        <div className="badge badge-outline">24H</div> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
