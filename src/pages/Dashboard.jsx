@@ -7,7 +7,6 @@ import { useEffect,useState } from "react"
 import useLocalStorage from '../hooks/useLocalStorage'
 import {detectProvider, getWalletAddress , getWalletStats, formatCurrency} from '../hooks/globalFun'
 import { useChangeLanguage } from "../hooks/useCustomHooks"
-import ci from "../../assets/constants/chains.json"
 
 export default function Dashboard() {
 
@@ -33,44 +32,18 @@ export default function Dashboard() {
 
     const fetchBalances = async () => {
         const [chainInfo, nativeBalance] = await getWalletStats(provider,accountAddress)
-        console.log(chainInfo)
         const API = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&sparkline=false&price_change_percentage=24h`
         const res = await  fetch(API)
         const data = await res.json()
-      
-   
-        const i = [...new Set(ci.map(item=>item.nativeCurrency.symbol.toLowerCase()))]
-        
-        // for (let x of i){
-        //     data.map(item => {
-        //         if(item.symbol !== x){
-        //             console.log(x)
-        //         }
-        //     })
-        // }
-
-        
-        // console.log(data.map(item => {
-        //    if(i.includes(item.symbol)){
-        //     return null
-        //    }else {
-        //     return item.symbol
-        //    }
-        // }))
-
-        // for (let x of i){
-        //       console.log(data.filter(item => item.symbol === x))   
-        // }
 
         const coinInfo = data.filter(item => chainInfo[0].nativeCurrency.symbol.toLowerCase() == item.symbol)
-        console.log(coinInfo)
         setChainInfo({
             title:chainInfo[0].name,
             symbol:chainInfo[0].nativeCurrency.symbol,
             currency: coinInfo.length > 0 ? '$' : chainInfo[0].nativeCurrency.symbol,
             network: chainInfo[0].network,
-            nativeBalance : coinInfo.length > 0 ? formatCurrency((nativeBalance*coinInfo[0].current_price).toFixed(2)) : nativeBalance,
-            priceChangePercentage: coinInfo[0].price_change_24h.toFixed(2) 
+            nativeBalance : coinInfo.length > 0 ? (nativeBalance*coinInfo[0].current_price).toFixed(2) : nativeBalance.toFixed(2),
+            priceChangePercentage: coinInfo.length > 0 ? coinInfo[0].price_change_percentage_24h.toFixed(2) : "0.00"
         })
     }
 
@@ -133,11 +106,11 @@ export default function Dashboard() {
                                     Total Balance <div className="tooltip tooltip-top tooltip-gray-400" data-tip="Native Balance"><div className="mt-1 btn btn-ghost text-info btn-xs btn-circle"><svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline h-5 w-6 stroke-gray-500 dark:stroke-gray-400"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div></div>
                                 </h2>
                                 <div className="flex md:flex-row sm:flex-col items-center gap-2  sm:text-md md:text-xl">
-                                    <span className="text-[#139287]">{chainInfo.nativeBalance ?? '0.00'} {chainInfo.currency ?? '$'}</span>
+                                    <span className="text-[#139287]">{formatCurrency(chainInfo.nativeBalance ?? '0.00')} {chainInfo.currency ?? '$'}</span>
                                     <div className="flex flex-row items-center gap-1">
                                         {chainInfo.priceChangePercentage[0] == '-' ? <AiFillCaretDown className="mt-0.5 text-red-500"/>:<AiFillCaretUp className="mt-0.5 text-[#139287]"/>}
-                                        <span className={ chainInfo.priceChangePercentage[0] == '-'? 'text-red-500' : 'text-[#139287]' }>{chainInfo.priceChangePercentage.replace(/\s|-/g,'')} %</span>
-                                        <div className="badge badge-outline">24H</div> 
+                                        <span className={ chainInfo.priceChangePercentage[0] == '-'? 'text-red-500' : 'text-[#139287]' }>{chainInfo.nativeBalance > 0 ? chainInfo.priceChangePercentage.replace(/\s|-/g,'') : "0.00" } %</span>
+                                        <div className="badge badge-outline">24 H</div> 
                                     </div>
                                 </div>
                             </div>

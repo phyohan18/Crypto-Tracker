@@ -42,7 +42,7 @@ const getWalletStats = async (provider,accountAddress) => {
   //get Native balance
   const encryptedBalance = await provider.request({
     method: 'eth_getBalance',
-    params: ['0x1FBe2AcEe135D991592f167Ac371f3DD893A508B','latest'],
+    params: [accountAddress,'latest'],
   })
   const nativeBalance = decrypteBalance(encryptedBalance)
   const chainInfo = CHAINS.filter(item => item.chainId == chainId);
