@@ -77,7 +77,7 @@ export default function DataTable({ searchValue, translation }){
                                 <th className="text-left">{translation('name')}</th>
                                 <th className="text-right">{translation('price')}</th>
                                 <th className="text-right hidden md:table-cell">{translation('change_24_hr')}</th>
-                                <th className="sm:text-right">{translation('market_cap')}</th>
+                                <th className="sm:text-right hidden xs:table-cell">{translation('market_cap')}</th>
                                 <th className="hidden lg:table-cell">{translation('last_7_days')}</th>
                             </tr>
                             
