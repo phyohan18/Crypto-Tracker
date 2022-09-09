@@ -4,8 +4,6 @@ export default function DashboardTable({ accountAddress }){
 
 
 
-
-
     // const fetchBalances = async () => {
     //     const chainId = await provider.request({ method: "eth_chainId" })
     //     setChainId(chainId)
