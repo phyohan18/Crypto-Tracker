@@ -9,7 +9,7 @@ export default function Footer(){
             </div>
             </div> 
             <div>
-            <p className="duration-75 dark:text-white">Copyright © {new Date().getFullYear()} - All right reserved. Designed by <span className="font-bold">Phyo Pyae Sone Han</span> @ Kiev</p>
+            <p className="duration-75 dark:text-white text-xs sm:text-sm">Copyright © {new Date().getFullYear()} - All right reserved. Designed by <span className="font-bold">Phyo Pyae Sone Han</span> @ Kiev</p>
             </div>
       </footer>
     )

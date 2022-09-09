@@ -126,7 +126,7 @@ export default function Cards({ accountAddress,setAccountAddress }) {
                             <div className="badge badge-outline">24 H</div> 
                         </div>
                         </> 
-}
+                    }
                     </div>
                 </div>
             </div>
