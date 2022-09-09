@@ -18,9 +18,9 @@ export default function Dashboard() {
     const [ currentLanguage , t] = useChangeLanguage()
    
     return (
-        <main className="bg-gray-100 dark:bg-gray-800 h-screen duration-75">
+        <main className="relative min-h-screen bg-gray-100 dark:bg-gray-800 duration-75 ">
             <DashboardNav accountAddress={accountAddress} currentLanguage={currentLanguage}/>
-            <div className="container mx-auto pt-16 px-8">
+            <div className="container mx-auto pt-16 pb-32 px-8">
                 <div className="text-sm breadcrumbs pt-6 mb-4">
                     <ul>
                         <li>
@@ -47,7 +47,7 @@ export default function Dashboard() {
                 <DashboardTable accountAddress={accountAddress} />
             </div>
             <div class="absolute inset-x-0 bottom-0">
-                <Footer/>
+               <Footer/>
             </div>
         </main>
     )
