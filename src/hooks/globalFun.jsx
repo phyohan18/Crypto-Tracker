@@ -35,25 +35,29 @@ const decrypteBalance= (encryptedBalance) => {
   return balance
 }
 
-const getWalletStats = async (provider,accountAddress) => {
+const getChainStats = async(provider) => {
   const chainId = await provider.request({ method: "eth_chainId" })
-  
+  const chainInfo = CHAINS.filter(item => item.chainId == chainId);
+  return chainInfo
+}
+
+const getBalanceStats = async (provider,accountAddress) => {
+  //get Native Currency Symbol
+  const chainInfo = await getChainStats(provider)
   //get Native balance
   const encryptedBalance = await provider.request({
     method: 'eth_getBalance',
     params: ['0x1FBe2AcEe135D991592f167Ac371f3DD893A508B','latest'],
   })
   const nativeBalance = decrypteBalance(encryptedBalance)
-  const chainInfo = CHAINS.filter(item => item.chainId == chainId);
-
-  return [chainInfo , nativeBalance]
+  return [nativeBalance,chainInfo[0].nativeCurrency.symbol]
 }
 
-const getCoinPrice = async(defaultCurrency,coinSymbol) =>{
+const getCoinChangePrice = async(defaultCurrency,coinSymbol) =>{
   const API = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&order=market_cap_desc&sparkline=false&price_change_percentage=24h`
   const res = await  fetch(API)
   const data = await res.json()
   return data.filter(item => coinSymbol.toLowerCase() == item.symbol)
 }
 
-export { changeLang,formatAddress, formatCurrency , detectProvider ,getWalletAddress, disconnect , getWalletStats, getCoinPrice }
+export { changeLang,formatAddress, formatCurrency , detectProvider ,getWalletAddress, disconnect ,getChainStats, getBalanceStats, getCoinChangePrice }

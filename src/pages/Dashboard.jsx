@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom"
 import NotFound from "./NotFound"
+import Footer from "../components/Footer"
 import DashboardNav from "../components/DashboardNav"
 import DashboardTable from "../components/DashboardTable"
-import Cards from "../components/Cards"
-
+import DashboardCards from "../components/DashboardCards"
 import useLocalStorage from '../hooks/useLocalStorage'
 import { useChangeLanguage } from "../hooks/useCustomHooks"
-import Footer from "../components/Footer"
 
 export default function Dashboard() {
 
@@ -40,13 +39,13 @@ export default function Dashboard() {
                 <div className="flex">
                     <span className="text-xl font-bold dark:text-accent-content">Wallet Stats</span>
                 </div>
-                <Cards accountAddress={accountAddress} setAccountAddress={setAccountAddress} />
+                <DashboardCards accountAddress={accountAddress} setAccountAddress={setAccountAddress} />
                 <div className="flex">
                     <span className="text-xl font-bold dark:text-accent-content">Assets</span>
                 </div>
                 <DashboardTable accountAddress={accountAddress} />
             </div>
-            <div class="absolute inset-x-0 bottom-0">
+            <div className="absolute inset-x-0 bottom-0">
                <Footer/>
             </div>
         </main>
