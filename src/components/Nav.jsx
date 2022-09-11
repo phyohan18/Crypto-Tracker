@@ -22,7 +22,7 @@ export default function Nav({ currentLanguage }) {
     
     return (
         <nav className={`navbar fixed z-30 top-0 py-3  ease-in duration-75  ${showNavBar && 'bg-white shadow dark:bg-gray-900'}`}>
-            <div className="container mx-auto px-2 xs:px-6 text-accent-content">
+            <div className="container mx-auto px-6 text-accent-content">
                 <div className="lg:pl-3">
                     <Link className={`font-extrabold text-xl ${showNavBar && 'text-neutral dark:text-white'}`} to="/">
                         <span className="text-teal-500">Crypto </span> Tracker
