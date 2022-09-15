@@ -68,24 +68,21 @@ export default function DataTable({ searchValue, translation }){
     }
     return (
         <>
-            <div id="content" className="container lg:w-12/14 xl:w-10/12 2xl:w-8/12 mb-8 xl:mb-0 px-4 mx-auto mt-4 ">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6  shadow-md rounded-lg">
-                    <div className="overflow-x-auto rounded-lg">
-                        <table className="table w-full ">
-                            <tr className="bg-teal-500 text-accent-content select-none text-center">
-                                <th className="hidden sm:table-cell">#</th>
-                                <th className="text-left">{translation('name')}</th>
-                                <th className="text-right">{translation('price')}</th>
-                                <th className="text-right hidden md:table-cell">{translation('change_24_hr')}</th>
-                                <th className="sm:text-right hidden xs:table-cell">{translation('market_cap')}</th>
-                                <th className="hidden lg:table-cell">{translation('last_7_days')}</th>
-                            </tr>
-                            
-                            <tbody className="lg:text-lg font-normal text-gray-900 dark:text-accent-content">
-                                { !items.length ? <SkeletonLoader/> : items.map( item => <TableRow key={item.id} coinInfo={item} currency={defaultCurrency} /> ) }
-                            </tbody>   
-                        </table> 
-                    </div>
+            <div className="container lg:w-12/14 xl:w-10/12 2xl:w-8/12 mb-8 xl:mb-0 px-4 md:px-8 mx-auto mt-4 ">
+                <div className="overflow-x-auto rounded-lg shadow-md">
+                    <table className="table w-full ">
+                        <tr className="bg-teal-500 text-accent-content select-none text-center">
+                            <th className="hidden sm:table-cell w-1/12">#</th>
+                            <th className="text-left w-2/4 sm:w-2/6">{translation('name')}</th>
+                            <th className="text-right xl:text-center w-1/4 sm:w-1/6">{translation('price')}</th>
+                            <th className="hidden md:table-cell w-1/6">{translation('change_24_hr')}</th>
+                            <th className="hidden xs:table-cell w-1/4 sm:w-1/6">{translation('market_cap')}</th>
+                            <th className="hidden lg:table-cell w-1/6">{translation('last_7_days')}</th>
+                        </tr>
+                        <tbody className="lg:text-lg font-normal text-gray-900 dark:text-accent-content">
+                            { !items.length ? <SkeletonLoader/> : items.map( item => <TableRow key={item.id} coinInfo={item} currency={defaultCurrency} /> ) }
+                        </tbody>   
+                    </table> 
                 </div>
             </div>
 
