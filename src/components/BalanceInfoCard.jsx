@@ -1,7 +1,7 @@
 import { AiFillCaretUp,AiFillCaretDown } from "react-icons/ai"
 import { useGlobalState } from '../hooks/globalState'
 import {useEffect,useState} from "react"
-import { getBalanceStats,getCoinChangePrice, formatCurrency} from '../hooks/globalFun'
+import { getBalanceStats,getCoinChangePrice, formatBalanceCommas} from '../hooks/globalFun'
 
 export default function BalanceInfoCard({provider , accountAddress}) {
 
@@ -72,7 +72,7 @@ export default function BalanceInfoCard({provider , accountAddress}) {
                     </p>
                 </div>: 
                 <>
-                    <span className="text-[#139287]">{formatCurrency(balanceInfo['nativeBalance'].toFixed(2))} {balanceInfo.currency}</span>
+                    <span className="text-[#139287]">{formatBalanceCommas(balanceInfo['nativeBalance'].toFixed(2))} {balanceInfo.currency}</span>
                     <div className="flex flex-row gap-1 items-center">
                         {balanceInfo.priceChangePercentage[0] == '-' ? <AiFillCaretDown className="mt-0.5 text-red-500"/>:<AiFillCaretUp className="mt-0.5 text-[#139287]"/>}
                         <span className={ balanceInfo.priceChangePercentage[0] == '-'? 'text-red-500' : 'text-[#139287]' }>{balanceInfo.nativeBalance > 0 ? balanceInfo.priceChangePercentage.replace(/\s|-/g,'') : "0.00" } %</span>

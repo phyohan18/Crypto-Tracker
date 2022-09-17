@@ -4,7 +4,10 @@ const changeLang = (value) => i18n.changeLanguage(value)
 
 const formatAddress = (accountAddress) => accountAddress.slice(0,5)+'...'+accountAddress.slice(-5)
 
-const formatCurrency = (x) =>  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+const formatBalanceCommas = (x) =>  x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+
+
+const formatBalanceDecimals = (decimals,balance) => formatBalanceCommas(parseFloat((balance/Math.pow(10,decimals)).toFixed(4)))
 
 const detectProvider = () => {
     let provider
@@ -60,4 +63,4 @@ const getCoinChangePrice = async(defaultCurrency,coinSymbol) =>{
   return data.filter(item => coinSymbol.toLowerCase() == item.symbol)
 }
 
-export { changeLang,formatAddress, formatCurrency , detectProvider ,getWalletAddress, disconnect ,getChainStats, getBalanceStats, getCoinChangePrice }
+export { changeLang,formatAddress, formatBalanceCommas , formatBalanceDecimals, detectProvider ,getWalletAddress, disconnect ,getChainStats, getBalanceStats, getCoinChangePrice }
