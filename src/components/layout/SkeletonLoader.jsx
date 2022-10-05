@@ -1,9 +1,10 @@
 export default function SkeletonLoader(){
+
     const showSkeletonTableRow = total => {
         let content = [];
         for (let i = 0; i < total; i++) {
           content.push( 
-            <tr className="animate-pulse">
+            <tr className="animate-pulse" key={i}>
                 <td className="hidden sm:table-cell dark:border-y-0">
                     <div className="h-4 w-7 mx-auto bg-slate-200 dark:bg-slate-600 rounded"></div>
                 </td>
@@ -30,7 +31,5 @@ export default function SkeletonLoader(){
         }
         return content;
     };
-    return (
-        <>{showSkeletonTableRow(10)}</>
-    )
+    return <>{showSkeletonTableRow(10)}</>       
 }

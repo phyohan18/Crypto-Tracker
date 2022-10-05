@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { formatAddress, detectProvider, getWalletAddress} from '../hooks/globalFun'
 import useLocalStorage from '../hooks/useLocalStorage'
 
-export default function Modal(){
+export default function Modal({translation}){
 
     const [ provider ] = useState(detectProvider())
     const [ accountAddress , setAccountAddress] = useLocalStorage("account_address", "")
@@ -45,7 +45,7 @@ export default function Modal(){
             <label htmlFor="my-modal-4" className="modal modal-bottom sm:modal-middle cursor-pointer duration-300 ">
                 <label className="modal-box relative bg-gray-100 dark:bg-gray-900">
                     <label htmlFor="my-modal-4" className="absolute right-5 top-5 font-bold cursor-pointer text-lg">✕</label>
-                    <h3 className="text-lg font-bold">{provider ? 'Select your wallet' : 'No Ethereum Browser Detected!'} </h3>
+                    <h3 className="text-lg font-bold">{provider ? translation('select_your_wallet') : translation('no_eth_browser')} </h3>
                     { accountAddress ?
                         <div className="flex flex-row mt-5 p-2">
                             <div className="flex justify-start gap-4 items-center">
@@ -63,7 +63,7 @@ export default function Modal(){
                                 </svg>
                             </div>
                             <div className="flex justify-end items-center w-full">
-                                <Link to="dashboard" className="font-normal text-sm hover:underline underline-offset-4 duration-200">Visit Dashboard</Link> 
+                                <Link to="dashboard" className="font-normal text-sm hover:underline underline-offset-4">{translation('visit_dashboard')}</Link> 
                             </div>
                         </div>
                         :
@@ -79,7 +79,7 @@ export default function Modal(){
                                 </div>
                             }
                             <p className="text-md font-bold text-center select-none leading-5"> 
-                                { loading ? "Connecting to MetaMask..." : provider ? "Connect with Metamask" : "Click Here to Install Metamask"}
+                                { loading ? translation("connecting")  : provider ? translation("connect_metamask") : translation("install_metamask")}
                             </p>
                         </button>
                     }               

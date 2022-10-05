@@ -9,6 +9,7 @@ import { initReactI18next } from 'react-i18next'
 import transitionsEn from '../assets/locales/en/translation.json'
 import transitionsMm from '../assets/locales/mm/translation.json'
 
+import { QueryClient, QueryClientProvider } from "react-query";
 i18n
   .use(initReactI18next)
   .init({
@@ -19,13 +20,17 @@ i18n
     lang: "en",
     fallbackLng: "en",
 })
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/dashboard" element={<Dashboard/>}/>
-                <Route path="*" element={<NotFound/>}/>
-            </Routes>
-        </BrowserRouter>
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
+    </BrowserRouter>
+  </QueryClientProvider>
+       
 )

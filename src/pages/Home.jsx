@@ -25,10 +25,12 @@ export default function App() {
             </div>
           </div> 
         </div>
-        <Section translation={t}/>    
+        <div className="py-1 duration-75 bg-gray-100 dark:bg-gray-800">
+          <Section translation={t} className="container lg:w-12/14 xl:w-10/12 2xl:w-8/12 mb-8 xl:mb-0 px-4 md:px-8 mx-auto mt-8"/>
+        </div>
       </main>
       <Footer/>
-      <Modal/>     
+      <Modal translation={t}/>     
     </div>
   )
 }
