@@ -47,7 +47,8 @@ export default function DataTable({ searchValue, translation }){
                         <th className="hidden lg:table-cell w-1/6">{translation('last_7_days')}</th>
                     </tr>
                     <tbody className="lg:text-lg font-normal text-gray-900 dark:text-accent-content">
-                        { data == null ? <SkeletonLoader />: items.map( item => <TableRow key={item.id} coinInfo={item} currency={defaultCurrency} /> ) }
+                        {/* { data == null ? <SkeletonLoader />: items.map( item => <TableRow key={item.id} coinInfo={item} currency={defaultCurrency} /> ) } */}
+                        { data == null ? <SkeletonLoader />: <h1>Hello</h1> }
                     </tbody>   
                 </table> 
             </div>
