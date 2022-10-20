@@ -2,7 +2,8 @@ import React,{ Suspense , lazy } from 'react'
 
 const Sparkline = lazy(() => import('./Sparkline'))
 export function TableRow({coinInfo, currency}) {
-    const formatBalanceCommas = (x) =>  x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+    const formatBalanceCommas = (x) =>  x.toString()
+
     return (
         <tr className="text-center">
             <td className="hidden sm:table-cell dark:border-y-0">{coinInfo.market_cap_rank}</td>
@@ -15,12 +16,6 @@ export function TableRow({coinInfo, currency}) {
                     </div>
                 </div>
             </td>
-            {/* <td className="text-right xl:text-center dark:border-y-0">
-                <div className="md:flex">
-                    <div className="w-full font-medium md:font-normal"><span className="uppercase">{currency}&nbsp;</span>{formatBalanceCommas(coinInfo.current_price)}</div>
-                    <div className={`block font-semibold md:font-light md:hidden ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-500'}`}>{coinInfo.price_change_percentage_24h}%</div>
-                </div>
-            </td> */}
             <td className="text-right xl:text-center dark:border-y-0">
                 <div className="md:flex">
                     <div className="w-full font-medium md:font-normal"><span className="uppercase">{currency}&nbsp;</span>{formatBalanceCommas(coinInfo.current_price)}</div>
@@ -28,7 +23,6 @@ export function TableRow({coinInfo, currency}) {
                 </div>
             </td>
             <td className="hidden md:table-cell dark:border-y-0"><div className={`font-semibold ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-600'}`}>{coinInfo.price_change_percentage_24h}%</div></td>
-            {/* <td className="hidden xs:table-cell dark:border-y-0 "><span className="uppercase">{currency}&nbsp;</span>&nbsp;{formatBalanceCommas(coinInfo.market_cap)}</td> */}
             <td className="hidden xs:table-cell dark:border-y-0 "><span className="uppercase">{currency}&nbsp;</span>&nbsp;{coinInfo.market_cap}</td>
             <td className="hidden lg:flex items-center justify-center dark:border-y-0">
                 <div className="w-40 h-12">
