@@ -51,8 +51,8 @@ export default function DataTable({ searchValue, translation }){
                         { data == null ? <SkeletonLoader />: items.map( item=> {
                                 return <tr>
                                     <td>{item.market_cap_rank}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{item.name}</td>
+                                    <td>{item.symbol}</td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
