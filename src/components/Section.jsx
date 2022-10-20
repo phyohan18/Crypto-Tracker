@@ -2,7 +2,7 @@ import React, { Suspense , useState} from 'react'
 // const HomeTable = React.lazy(() => import('./HomeTable'))
 // const DashboardTable = React.lazy(()=> import('./DashboardTable'))
 import DashboardTable from './DashboardTable'
-import HomeTable from './HomeTable_Test'
+import HomeTable from './HomeTable'
 //Suspense Htae Kyi
 export default function Section(props){
 
