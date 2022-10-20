@@ -1,6 +1,6 @@
 import React,{ Suspense , lazy } from 'react'
 import {formatBalanceCommas} from '../../hooks/globalFun'
-// const Sparkline = lazy(() => import('./Sparkline'))
+const Sparkline = lazy(() => import('./Sparkline'))
 export function TableRow({coinInfo, currency}) {
     return (
         <tr className="text-center">
@@ -24,9 +24,9 @@ export function TableRow({coinInfo, currency}) {
             <td className="hidden xs:table-cell dark:border-y-0 "><span className="uppercase">{currency}&nbsp;</span>&nbsp;{formatBalanceCommas(coinInfo.market_cap)}</td>
             <td className="hidden lg:flex items-center justify-center dark:border-y-0">
                 <div className="w-40 h-12">
-                    {/* <Suspense fallback={<div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12"></div>}>
+                    <Suspense fallback={<div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12"></div>}>
                         <Sparkline data={coinInfo.sparkline_in_7d.price}/>
-                    </Suspense> */}
+                    </Suspense>
                 </div> 
             </td>
         </tr>
