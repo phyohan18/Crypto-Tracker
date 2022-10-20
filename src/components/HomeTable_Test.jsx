@@ -1,4 +1,4 @@
-import TableRow from './layout/TableRow_test'
+import TableRow from './layout/TableRow'
 import Pagination from './layout/Pagination'
 import { useEffect, useState } from 'react'
 import { useGlobalState } from '../hooks/globalState'

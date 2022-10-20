@@ -4,7 +4,11 @@ const changeLang = (value) => i18n.changeLanguage(value)
 
 const formatAddress = (accountAddress) => accountAddress.slice(0,5)+'...'+accountAddress.slice(-5)
 
-const formatBalanceCommas = (x) =>  x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+const formatBalanceCommas = ((x) =>  {
+  var parts = x.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
+})
 
 const formatBalanceDecimals = (decimals,balance) => formatBalanceCommas(parseFloat((balance/Math.pow(10,decimals)).toFixed(4)))
 
