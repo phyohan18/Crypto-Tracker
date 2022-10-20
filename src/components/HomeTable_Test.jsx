@@ -1,4 +1,4 @@
-import TableRow from './layout/TableRow'
+import TableRow from './layout/TableRow_test'
 import Pagination from './layout/Pagination'
 import { useEffect, useState } from 'react'
 import { useGlobalState } from '../hooks/globalState'
@@ -47,18 +47,7 @@ export default function DataTable({ searchValue, translation }){
                         <th className="hidden lg:table-cell w-1/6">{translation('last_7_days')}</th>
                     </tr>
                     <tbody className="lg:text-lg font-normal text-gray-900 dark:text-accent-content">
-                        {/* { data == null ? <SkeletonLoader />: items.map( item => <TableRow key={item.id} coinInfo={item} currency={defaultCurrency} /> ) } */}
-                        { data == null ? <SkeletonLoader />: items.map( item=> {
-                                return <tr>
-                                    <td>{item.market_cap_rank}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.symbol}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            })
-                        }
+                        { data == null ? <SkeletonLoader />: items.map( item => <TableRow key={item.id} coinInfo={item} currency={defaultCurrency} /> ) }
                     </tbody>   
                 </table> 
             </div>
