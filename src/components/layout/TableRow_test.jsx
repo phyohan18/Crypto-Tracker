@@ -14,12 +14,12 @@ export function TableRow({coinInfo, currency}) {
                     </div>
                 </div>
             </td>
-            <td className="text-right xl:text-center dark:border-y-0">
+            {/* <td className="text-right xl:text-center dark:border-y-0">
                 <div className="md:flex">
-                    {/* <div className="w-full font-medium md:font-normal"><span className="uppercase">{currency}&nbsp;</span>{formatBalanceCommas(coinInfo.current_price)}</div>
-                    <div className={`block font-semibold md:font-light md:hidden ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-500'}`}>{coinInfo.price_change_percentage_24h}%</div> */}
+                    <div className="w-full font-medium md:font-normal"><span className="uppercase">{currency}&nbsp;</span>{formatBalanceCommas(coinInfo.current_price)}</div>
+                    <div className={`block font-semibold md:font-light md:hidden ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-500'}`}>{coinInfo.price_change_percentage_24h}%</div>
                 </div>
-            </td>
+            </td> */}
             <td className="hidden md:table-cell dark:border-y-0"><div className={`font-semibold ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-600'}`}>{coinInfo.price_change_percentage_24h}%</div></td>
             <td className="hidden xs:table-cell dark:border-y-0 "><span className="uppercase">{currency}&nbsp;</span>&nbsp;{formatBalanceCommas(coinInfo.market_cap)}</td>
             <td className="hidden lg:flex items-center justify-center dark:border-y-0">
