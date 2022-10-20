@@ -48,7 +48,7 @@ export default function DataTable({ searchValue, translation }){
                     </tr>
                     <tbody className="lg:text-lg font-normal text-gray-900 dark:text-accent-content">
                         {/* { data == null ? <SkeletonLoader />: items.map( item => <TableRow key={item.id} coinInfo={item} currency={defaultCurrency} /> ) } */}
-                        { data == null ? <SkeletonLoader />: items.map( item=> <h1>Hello</h1> )}
+                        { data == null ? <SkeletonLoader />: items.map( item=> <h1>Hi</h1> )}
                     </tbody>   
                 </table> 
             </div>
