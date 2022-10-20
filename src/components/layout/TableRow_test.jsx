@@ -2,6 +2,7 @@ import React,{ Suspense , lazy } from 'react'
 import { formatBalanceCommas } from '../../hooks/globalFun'
 const Sparkline = lazy(() => import('./Sparkline'))
 export function TableRow({coinInfo, currency}) {
+    const formatBalanceCommas = (x) =>  x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
     return (
         <tr className="text-center">
             <td className="hidden sm:table-cell dark:border-y-0">{coinInfo.market_cap_rank}</td>
