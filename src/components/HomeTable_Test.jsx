@@ -48,7 +48,17 @@ export default function DataTable({ searchValue, translation }){
                     </tr>
                     <tbody className="lg:text-lg font-normal text-gray-900 dark:text-accent-content">
                         {/* { data == null ? <SkeletonLoader />: items.map( item => <TableRow key={item.id} coinInfo={item} currency={defaultCurrency} /> ) } */}
-                        { data == null ? <SkeletonLoader />: items.map( item=> <TableRow key={item.id} coinInfo={item} currency={defaultCurrency} /> )}
+                        { data == null ? <SkeletonLoader />: items.map( item=> {
+                                return <tr>
+                                    <td>{item.market_cap_rank}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            })
+                        }
                     </tbody>   
                 </table> 
             </div>
