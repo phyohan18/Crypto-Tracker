@@ -2,8 +2,7 @@ import React,{ Suspense , lazy } from 'react'
 
 const Sparkline = lazy(() => import('./Sparkline'))
 export function TableRow({coinInfo, currency}) {
-    const formatBalanceCommas = (x) =>  x.toString()
-
+    const formatBalanceCommas = (x) =>  x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
     return (
         <tr className="text-center">
             <td className="hidden sm:table-cell dark:border-y-0">{coinInfo.market_cap_rank}</td>
@@ -23,7 +22,7 @@ export function TableRow({coinInfo, currency}) {
                 </div>
             </td>
             <td className="hidden md:table-cell dark:border-y-0"><div className={`font-semibold ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-600'}`}>{coinInfo.price_change_percentage_24h}%</div></td>
-            <td className="hidden xs:table-cell dark:border-y-0 "><span className="uppercase">{currency}&nbsp;</span>&nbsp;{coinInfo.market_cap}</td>
+            <td className="hidden xs:table-cell dark:border-y-0 "><span className="uppercase">{currency}&nbsp;</span>&nbsp;{formatBalanceCommas(coinInfo.market_cap)}</td>
             <td className="hidden lg:flex items-center justify-center dark:border-y-0">
                 <div className="w-40 h-12">
                     <Suspense fallback={<div className="bg-slate-200 dark:bg-slate-600 rounded mx-auto w-40 h-12"></div>}>
