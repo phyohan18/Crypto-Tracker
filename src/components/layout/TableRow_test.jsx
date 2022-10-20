@@ -22,7 +22,7 @@ export function TableRow({coinInfo, currency}) {
             </td> */}
             <td className="text-right xl:text-center dark:border-y-0">
                 <div className="md:flex">
-                    <div className="w-full font-medium md:font-normal"><span className="uppercase">{currency}&nbsp;</span>{coinInfo.current_price}</div>
+                    <div className="w-full font-medium md:font-normal"><span className="uppercase">{currency}&nbsp;</span>{formatBalanceCommas(19212.37)}</div>
                     <div className={`block font-semibold md:font-light md:hidden ${coinInfo.price_change_percentage_24h > 0 ? 'text-emerald-600' : 'text-red-500'}`}>{coinInfo.price_change_percentage_24h}%</div>
                 </div>
             </td>
