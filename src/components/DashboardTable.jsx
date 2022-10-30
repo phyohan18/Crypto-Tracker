@@ -6,20 +6,14 @@ import { useQuery } from 'react-query'
 import SkeletonLoader from "../components/layout/SkeletonLoader"
 
 export default function DashboardTable({ accountAddress,provider, searchValue, translation}){
-
+  
     const [currentPage, setCurrentPage] = useState(1)
     const [searchItems, setSearchItems] = useState([])
-    const [chainId, setChainId ] = useState(null)
+    const [chainId, setChainId ] = useState()
     const fetchChainId = async () => {
         const chainInfo = await getChainStats(provider)
         setChainId(chainInfo[0].chainId)
     }
-    const API = `https://api.covalenthq.com/v1/${chainId}/address/0x5616E2b8AcfF064bF902B8A93CbD5Da2ca1edC7C/balances_v2/?quote-currency=USD&format=JSON&nft=false&no-nft-fetch=true&key=ckey_9a3d9397e3bb45d395427d81c37`
-   
-    const { error, isLoading, data } = useQuery(['walletData',chainId],()=>fetcher(API))
-
-    const showItems = data == null ? [] : data['items'].filter(item => parseFloat(item.balance) > 0)
-
     useEffect(()=>{
         fetchChainId()
         if(provider) {
@@ -31,7 +25,9 @@ export default function DashboardTable({ accountAddress,provider, searchValue, t
             }
         }
     },[])
-
+    
+    const { error, isLoading, data } = useQuery(chainId && ['walletData',chainId],()=>fetcher(`https://api.covalenthq.com/v1/${chainId}/address/${accountAddress}/balances_v2/?quote-currency=USD&format=JSON&nft=false&no-nft-fetch=true&key=ckey_9a3d9397e3bb45d395427d81c37`))
+    const showItems = data == null ? [] : data['items'].filter(item => parseFloat(item.balance) > 0 && item.contract_name !== null && item.type !== 'dust')
 
     useEffect(()=>{   
         setSearchItems(showItems.filter(item=> item.contract_name.toLowerCase().indexOf(searchValue.toLowerCase()) > -1))
@@ -44,7 +40,6 @@ export default function DashboardTable({ accountAddress,provider, searchValue, t
     
     //Change Page
     const changePage = (pageNumber) => setCurrentPage(pageNumber)
-
     return(
         <>
             <div  className="overflow-x-auto rounded-lg shadow-md">

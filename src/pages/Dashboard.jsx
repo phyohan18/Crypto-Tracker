@@ -12,7 +12,6 @@ import { useState} from "react"
 export default function Dashboard() {
 
     const [ accountAddress, setAccountAddress ] = useLocalStorage('account_address', '')
-    
     if (!accountAddress)
         return <NotFound/>
     

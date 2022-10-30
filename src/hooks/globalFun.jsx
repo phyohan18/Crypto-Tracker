@@ -5,14 +5,60 @@ const changeLang = (value) => i18n.changeLanguage(value)
 const formatAddress = (accountAddress) => accountAddress.slice(0,5)+'...'+accountAddress.slice(-5)
 
 const formatBalanceCommas = ((x) =>  {
-  var parts = x.toString().split(".");
+  let parts = x.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return parts.join(".");
 })
 
-const formatBalanceDecimals = (decimals,balance) => formatBalanceCommas(parseFloat((balance/Math.pow(10,decimals)).toFixed(4)))
+const formatBalanceDecimals = (decimals,balance) => parseFloat((balance/Math.pow(10,decimals)).toFixed(2))
+
+const fetcher = (...args) => fetch(...args).then(res => res.json()).then(res => res.error != null ? res.data : res)
+
+const paginate = (searchItems,showItems,currentPage,items,tempNumberOfPages) => {
+  let itemsPerPage = searchItems.length < 10 && searchItems.length > 0 ? searchItems.length : ( showItems.length > 10 ? 10 : showItems.length)
+  // Get current items
+  const index0fLastItem = currentPage*itemsPerPage
+  const index0fFirstItem = index0fLastItem-itemsPerPage
+  let pages
+  if (searchItems.length == 0)
+  {
+      items = showItems.slice(index0fFirstItem, index0fLastItem)
+      pages = Math.ceil(showItems.length/itemsPerPage)
+  } else {
+      items = searchItems.slice(index0fFirstItem, index0fLastItem)
+      pages = Math.ceil(searchItems.length/itemsPerPage)
+  }
+ 
+  const pageNumbers = []
+  for (let i = 1; i <= pages; i++){
+      pageNumbers.push(i)
+  }
+ 
+  if(pageNumbers.length <= 5){
+      tempNumberOfPages = [...pageNumbers]
+  } else {
+      if (currentPage >= 1 && currentPage <= 3) {
+          tempNumberOfPages = [1,2,3,4,5,'...',pageNumbers.length]
+      }
+      else if ( currentPage >= 4 && currentPage < pageNumbers.length - 2) {
+          const sliced1 = pageNumbers.slice(currentPage - 2, currentPage+1) 
+          tempNumberOfPages = [1,'...',...sliced1,'...',pageNumbers.length]
+      }
+      else if ( currentPage > pageNumbers.length - 3) {                           
+          const sliced = pageNumbers.slice(pageNumbers.length - 5)                
+          tempNumberOfPages = [1,'...',...sliced]
+      }
+  }
+  return [tempNumberOfPages,items]
+}
 
 const getPercentageChange = (oldNumber, newNumber) => ((newNumber-oldNumber)/newNumber*100.0).toFixed(5)
+
+const displayPercentageChange = (quote_rate_24h,quote_rate) =>{
+  if (quote_rate_24h == null)  return '--'
+  const value = parseFloat(getPercentageChange(quote_rate_24h,quote_rate))
+  return  <div className={`font-semibold ${value > 0 ? 'text-emerald-600' : 'text-red-500'}`}>{value}%</div>
+}
 
 const detectProvider = () => {
     let provider
@@ -60,50 +106,11 @@ const getBalanceStats = async (provider,accountAddress) => {
 }
 
 const getCoinChangePrice = async(defaultCurrency,coinSymbol) =>{
-  const API = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&order=market_cap_desc&sparkline=true&price_change_percentage=24h`
+  const API = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&order=market_cap_rank_desc&sparkline=true&price_change_percentage=24h`
   const res = await  fetch(API)
   const data = await res.json()
   return data.filter(item => coinSymbol.toLowerCase() == item.symbol)
 }
        
-const fetcher = (...args) => fetch(...args).then(res => res.json()).then(res => res.error != null ? res.data : res)
 
-const paginate = (searchItems,showItems,currentPage,items,tempNumberOfPages) => {
-  let itemsPerPage = searchItems.length < 10 && searchItems.length > 0 ? searchItems.length : ( showItems.length > 10 ? 10 : showItems.length)
-  // Get current items
-  const index0fLastItem = currentPage*itemsPerPage
-  const index0fFirstItem = index0fLastItem-itemsPerPage
-  let pages
-  if (searchItems.length == 0)
-  {
-      items = showItems.slice(index0fFirstItem, index0fLastItem)
-      pages = Math.ceil(showItems.length/itemsPerPage)
-  } else {
-      items = searchItems.slice(index0fFirstItem, index0fLastItem)
-      pages = Math.ceil(searchItems.length/itemsPerPage)
-  }
- 
-  const pageNumbers = []
-  for (let i = 1; i <= pages; i++){
-      pageNumbers.push(i)
-  }
- 
-  if(pageNumbers.length <= 5){
-      tempNumberOfPages = [...pageNumbers]
-  } else {
-      if (currentPage >= 1 && currentPage <= 3) {
-          tempNumberOfPages = [1,2,3,4,5,'...',pageNumbers.length]
-      }
-      else if ( currentPage >= 4 && currentPage < pageNumbers.length - 2) {
-          const sliced1 = pageNumbers.slice(currentPage - 2, currentPage+1) 
-          tempNumberOfPages = [1,'...',...sliced1,'...',pageNumbers.length]
-      }
-      else if ( currentPage > pageNumbers.length - 3) {                           
-          const sliced = pageNumbers.slice(pageNumbers.length - 5)                
-          tempNumberOfPages = [1,'...',...sliced]
-      }
-  }
-  return [tempNumberOfPages,items]
-}
-
-export { changeLang,formatAddress, formatBalanceCommas , formatBalanceDecimals, getPercentageChange, detectProvider ,getWalletAddress, disconnect ,getChainStats, getBalanceStats, getCoinChangePrice, fetcher , paginate}
+export { changeLang,formatAddress, formatBalanceCommas , formatBalanceDecimals,displayPercentageChange, detectProvider ,getWalletAddress, disconnect ,getChainStats, getBalanceStats, getCoinChangePrice, fetcher , paginate}

@@ -12,7 +12,7 @@ export default function DataTable({ searchValue, translation }){
     const [searchItems, setSearchItems] = useState([])
     const [defaultCurrency] = useGlobalState("defaultCurrency")
     const API = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${defaultCurrency}&order=market_cap_rank_desc&per_page=100&page=1&sparkline=true`
-    const { error, isLoading, data } = useQuery(['coinsData',defaultCurrency],()=>fetcher(API))
+    const { error, isLoading, data } = useQuery(['coins',defaultCurrency],()=>fetcher(API))
    
     const showItems = data == null ? [] : data
  
